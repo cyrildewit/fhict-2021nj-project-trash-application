@@ -15,21 +15,27 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Product::create([
-            'barcode' => '3038589249',
-            'title' => 'Test 1',
-            'description' => 'Something or ..sdfjskdfj skfdk .',
+            'barcode' => '8710908927799',
+            'title' => 'Cup a Soup - Thaise pittige kip',
+            'description' => 'Lorem ipsum',
         ]);
 
         Product::create([
-            'barcode' => '44354535',
-            'title' => 'Test 2',
-            'description' => 'Something or ..sdfjskdfj skfdk .',
+            'barcode' => '8710255100180',
+            'title' => 'IAMS Delights Senior met Kip in Saus',
+            'description' => 'Lorem ipsum',
         ]);
 
         Product::create([
-            'barcode' => '34543543553',
-            'title' => 'Test 3',
-            'description' => 'Something or ..sdfjskdfj skfdk .',
+            'barcode' => '8710496977541',
+            'title' => 'De Ruijter - Vlokfeest',
+            'description' => 'Lorem ipsum',
+        ]);
+
+        Product::create([
+            'barcode' => '8710391936919',
+            'title' => 'Venz - Chocolade Hagelslag',
+            'description' => 'Lorem ipsum',
         ]);
     }
 }
