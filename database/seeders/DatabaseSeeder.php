@@ -15,27 +15,27 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Product::create([
-            'barcode' => '8710908927799',
-            'title' => 'Cup a Soup - Thaise pittige kip',
-            'description' => 'Lorem ipsum',
+            'barcode' => '05449000111678',
+            'title' => 'Chaudfontaine Mineraalwater',
+            'seperation_tray' => 'pmd',
         ]);
 
         Product::create([
             'barcode' => '8710255100180',
             'title' => 'IAMS Delights Senior met Kip in Saus',
-            'description' => 'Lorem ipsum',
+            'seperation_tray' => 'pmd',
         ]);
 
         Product::create([
             'barcode' => '8710496977541',
             'title' => 'De Ruijter - Vlokfeest',
-            'description' => 'Lorem ipsum',
+            'seperation_tray' => 'pmd',
         ]);
 
         Product::create([
             'barcode' => '8710391936919',
             'title' => 'Venz - Chocolade Hagelslag',
-            'description' => 'Lorem ipsum',
+            'seperation_tray' => 'pmd',
         ]);
     }
 }
