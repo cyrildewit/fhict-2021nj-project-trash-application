@@ -15,26 +15,26 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Product::create([
-            'barcode' => '05449000111678',
+            'barcode' => '5449000111678',
             'title' => 'Chaudfontaine Mineraalwater',
             'seperation_tray' => 'pmd',
         ]);
 
         Product::create([
-            'barcode' => '8710255100180',
-            'title' => 'IAMS Delights Senior met Kip in Saus',
+            'barcode' => '90162909',
+            'title' => 'Redbull',
             'seperation_tray' => 'pmd',
         ]);
 
         Product::create([
-            'barcode' => '8710496977541',
-            'title' => 'De Ruijter - Vlokfeest',
+            'barcode' => '8710739200023',
+            'title' => 'Originele kanjers stroopwafels',
             'seperation_tray' => 'pmd',
         ]);
 
         Product::create([
-            'barcode' => '8710391936919',
-            'title' => 'Venz - Chocolade Hagelslag',
+            'barcode' => '5449000238740',
+            'title' => 'Fuze Tea',
             'seperation_tray' => 'pmd',
         ]);
     }
