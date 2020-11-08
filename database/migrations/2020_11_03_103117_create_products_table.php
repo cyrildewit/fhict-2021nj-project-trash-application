@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('barcode')->unique();
             $table->string('title');
-            $table->text('description');
+            $table->string('seperation_tray');
             $table->timestamps();
         });
     }

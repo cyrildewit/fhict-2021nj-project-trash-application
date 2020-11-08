@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductCollection;
+use App\Http\Resources\Product as ProductResource;
 
 class ProductController extends Controller
 {
@@ -22,5 +25,18 @@ class ProductController extends Controller
             ->jsonPaginate();
 
         return new ProductCollection($products);
+    }
+
+    public function showByBarcode($barcode)
+    {
+        $product = QueryBuilder::for(Product::class)
+            ->where('barcode', $barcode)
+            ->first();
+
+        if ($product === null) {
+            throw new ModelNotFoundException();
+        }
+
+        return new ProductResource($product);
     }
 }
