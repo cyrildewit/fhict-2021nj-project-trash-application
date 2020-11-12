@@ -63,5 +63,12 @@ class DatabaseSeeder extends Seeder
             'seperation_tray' => 'gft',
             'information' => 'Verpakking in   plastic bak',
         ]);
+
+        Product::create([
+            'barcode' => '457043419',
+            'title' => 'Tijdelijk rest',
+            'seperation_tray' => 'rest',
+            'information' => 'Product in     rest bak',
+        ]);
     }
 }
