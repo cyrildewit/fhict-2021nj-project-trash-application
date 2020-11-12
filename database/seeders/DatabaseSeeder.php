@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
             'barcode' => '457043419',
             'title' => 'Tijdelijk rest',
             'seperation_tray' => 'rest',
-            'information' => 'Product in     rest bak',
+            'information' => 'Product in      rest bak',
         ]);
     }
 }
