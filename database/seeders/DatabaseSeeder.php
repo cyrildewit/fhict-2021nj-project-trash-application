@@ -48,5 +48,12 @@ class DatabaseSeeder extends Seeder
             'seperation_tray' => 'paper',
             'information' => 'Verpakking in   papieren bak',
         ]);
+
+        Product::create([
+            'barcode' => '8711000870228',
+            'title' => 'Ice Macchiato',
+            'seperation_tray' => 'paper',
+            'information' => 'Dop mag in      plastic bak',
+        ]);
     }
 }
