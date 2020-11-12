@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'barcode' => '8718452119233',
             'title' => 'Citroën',
-            'seperation_tray' => 'paper',
+            'seperation_tray' => 'gft',
             'information' => 'Verpakking in   plastic bak',
         ]);
     }
