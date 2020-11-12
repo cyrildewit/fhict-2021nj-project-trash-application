@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'barcode' => '5449000111678',
             'title' => 'Chaudfontaine Mineraalwater',
-            'seperation_tray' => 'pmd',
+            // 'seperation_tray' => 'pmd',
+            'seperation_tray' => 'gft',
             'information' => 'Plastic fles in pmd bak',
         ]);
 
@@ -54,6 +55,13 @@ class DatabaseSeeder extends Seeder
             'title' => 'Ice Macchiato',
             'seperation_tray' => 'paper',
             'information' => 'Dop mag in      plastic bak',
+        ]);
+
+        Product::create([
+            'barcode' => '8718452119233',
+            'title' => 'Citroën',
+            'seperation_tray' => 'paper',
+            'information' => 'Verpakking in   plastic bak',
         ]);
     }
 }
