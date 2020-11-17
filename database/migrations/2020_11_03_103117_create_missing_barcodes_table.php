@@ -14,7 +14,7 @@ class CreateMissingBarcodesTable extends Migration
     public function up()
     {
         Schema::create('missing_barcodess', function (Blueprint $table) {
-            $table->bigIncrements();
+            $table->bigIncrements('id');
             $table->string('barcode')->unique();
             $table->bigInteger('lookups');
             $table->timestamps();
