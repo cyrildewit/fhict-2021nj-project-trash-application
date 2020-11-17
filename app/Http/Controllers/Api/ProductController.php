@@ -35,9 +35,7 @@ class ProductController extends Controller
             ->first();
 
         if ($product === null) {
-            $missingBarcode = MissingBarcode::where()
-                ->where('barcode', $barcode)
-                ->find();
+            $missingBarcode = MissingBarcode::where('barcode', $barcode)->first();
 
             if ($missingBarcode === null) {
                 MissingBarcode::create([
