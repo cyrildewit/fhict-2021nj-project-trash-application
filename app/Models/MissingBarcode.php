@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class MissingBarcode extends Model
 {
     use HasFactory;
+
+    public $guarded = [];
 }
