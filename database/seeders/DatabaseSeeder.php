@@ -17,8 +17,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'barcode' => '5449000111678',
             'title' => 'Chaudfontaine Mineraalwater',
-            // 'seperation_tray' => 'pmd',
-            'seperation_tray' => 'gft',
+            'seperation_tray' => 'pmd',
             'information' => 'Plastic fles in pmd bak',
         ]);
 
@@ -65,10 +64,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::create([
-            'barcode' => '457043419',
-            'title' => 'Tijdelijk rest',
-            'seperation_tray' => 'rest',
-            'information' => 'Product in      rest bak',
+            'barcode' => '8713300079189',
+            'title' => 'Dubbel Drank',
+            'seperation_tray' => 'pmd',
+            'information' => 'Verpakking in   plastic bak',
         ]);
     }
 }

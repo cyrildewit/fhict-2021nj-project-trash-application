@@ -13,7 +13,7 @@ class CreateMissingBarcodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('missing_barcodess', function (Blueprint $table) {
+        Schema::create('missing_barcodes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('barcode')->unique();
             $table->bigInteger('lookups');
@@ -28,6 +28,6 @@ class CreateMissingBarcodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('missing_barcodes');
     }
 }
