@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\MissingBarcode;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -34,6 +35,19 @@ class ProductController extends Controller
             ->first();
 
         if ($product === null) {
+            $missingBarcode = MissingBarcode::where()
+                ->where('barcode', $barcode)
+                ->find();
+
+            if ($missingBarcode === null) {
+                MissingBarcode::create([
+                    'barcode' => $barcode,
+                    'lookups' => 0,
+                ]);
+            } else {
+                $missingBarcode->increment('lookups');
+            }
+
             throw new ModelNotFoundException();
         }
 
