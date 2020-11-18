@@ -40,7 +40,7 @@ class ProductController extends Controller
             if ($missingBarcode === null) {
                 MissingBarcode::create([
                     'barcode' => $barcode,
-                    'lookups' => 0,
+                    'lookups' => 1,
                 ]);
             } else {
                 $missingBarcode->increment('lookups');
