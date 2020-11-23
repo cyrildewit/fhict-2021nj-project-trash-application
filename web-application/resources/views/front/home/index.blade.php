@@ -7,7 +7,7 @@
             <nav class="main-navigation">
                 <div class="container clearfix">
                     <div class="site-logo-wrap">
-                        <a class="logo" href="#"><img src="{{ asset('front/images/ds-logo.png') }}" alt="Design Studio"></a>
+                        <a class="logo" href="#"><img src="{{ asset('front/images/ds-logo.png') }}" style="height: 20px; width: auto;" alt="Design Studio"></a>
                     </div>
                     <a href="javascript:void(0)" class="menu-trigger hidden-lg-up"><span>&nbsp;</span></a>
                     <div class="main-menu hidden-md-down">
@@ -17,6 +17,7 @@
                             <li><a class="nav-link" href="javascript:void(0)" data-target="#About">Over Ons</a></li>
                             <li><a class="nav-link" href="javascript:void(0)" data-target="#Portfolio">Onderbouwing</a></li>
                             <li><a class="nav-link" href="javascript:void(0)" data-target="#ContactUs">Contact</a></li>
+                            <li><a class="nav-link" href="{{ route('front.auth.login') }}">Inloggen</a></li>
                         </ul>
                     </div>
                 </div>
@@ -120,7 +121,7 @@
                 </div>
                 <div class="portfolio-wrapper clearfix">
                     <a class="each-portfolio" data-fancybox="gallery" href="{{ asset('front/images/p-one.jpg') }}">
-                    <img src="images/p-one.jpg" alt="p-one">
+                    <img src="{{ asset('front/images/p-one.jpg') }}" alt="p-one">
                     <div class="hover-cont-wrap">
                         <div class="hover-cont-block">
                            <h5 class="p-title">GREEN</h5>
@@ -132,7 +133,7 @@
                     </div>
                    </a>
                     <a class="each-portfolio" data-fancybox="gallery" href="{{ asset('front/images/p-two.jpg') }}">
-                    <img src="images/p-two.jpg" alt="p-one">
+                    <img src="{{ asset('front/images/p-two.jpg') }}" alt="p-one">
                     <div class="hover-cont-wrap">
                         <div class="hover-cont-block">
                            <h5 class="p-title">TRASHCAN</h5>
@@ -144,7 +145,7 @@
                     </div>
                    </a>
                     <a class="each-portfolio" data-fancybox="gallery" href="{{ asset('front/images/p-three.jpg') }}">
-                    <img src="images/p-three.jpg" alt="p-one">
+                    <img src="{{ asset('front/images/p-three.jpg') }}" alt="p-one">
                     <div class="hover-cont-wrap">
                        <div class="hover-cont-block">
                            <h5 class="p-title">inspiration</h5>
@@ -156,7 +157,7 @@
                     </div>
                    </a>
                     <a class="each-portfolio" data-fancybox="gallery" href="{{ asset('front/images/p-four.jpg') }}">
-                    <img src="images/p-four.jpg" alt="p-one">
+                    <img src="{{ asset('front/images/p-four.jpg') }}" alt="p-one">
                     <div class="hover-cont-wrap">
                         <div class="hover-cont-block">
                            <h5 class="p-title">ECO FRIENDLY</h5>
@@ -168,7 +169,7 @@
                     </div>
                    </a>
                     <a class="each-portfolio" data-fancybox="gallery" href="{{ asset('front/images/p-five.jpg') }}">
-                    <img src="images/p-five.jpg" alt="p-one">
+                    <img src="{{ asset('front/images/p-five.jpg') }}" alt="p-one">
                     <div class="hover-cont-wrap">
                         <div class="hover-cont-block">
                            <h5 class="p-title">EXAMPLE</h5>
@@ -180,7 +181,7 @@
                     </div>
                    </a>
                     <a class="each-portfolio" data-fancybox="gallery" href="{{ asset('front/images/p-six.jpg') }}">
-                    <img src="images/p-six.jpg" alt="p-one">
+                    <img src="{{ asset('front/images/p-six.jpg') }}" alt="p-one">
                     <div class="hover-cont-wrap">
                         <div class="hover-cont-block">
                            <h5 class="p-title">LABEL</h5>
@@ -192,7 +193,7 @@
                     </div>
                    </a>
                     <a class="each-portfolio" data-fancybox="gallery" href="{{ asset('front/images/p-two.jpg') }}">
-                    <img src="images/p-seven.jpg" alt="p-seven">
+                    <img src="{{ asset('front/images/p-two.jpg') }}" alt="p-seven">
                     <div class="hover-cont-wrap">
                         <div class="hover-cont-block">
                            <h5 class="p-title">GRAFIEK SCHEIDEN</h5>
@@ -204,7 +205,7 @@
                     </div>
                    </a>
                     <a class="each-portfolio" data-fancybox="gallery" href="{{ asset('front/images/p-eight.jpg') }}">
-                    <img src="images/p-eight.jpg" alt="p-eight">
+                    <img src="{{ asset('front/images/p-eight.jpg') }}" alt="p-eight">
                     <div class="hover-cont-wrap">
                         <div class="hover-cont-block">
                            <h5 class="p-title">GLOBAAL</h5>
@@ -216,7 +217,7 @@
                     </div>
                    </a>
                     <a class="each-portfolio" data-fancybox="gallery" href="{{ asset('front/images/p-nine.jpg') }}">
-                    <img src="images/p-nine.jpg" alt="p-nine">
+                    <img src="{{ asset('front/images/p-nine.jpg') }}" alt="p-nine">
                     <div class="hover-cont-wrap">
                         <div class="hover-cont-block">
                             <h5 class="p-title">HUISHOUDELIJK AFVAL</h5>
