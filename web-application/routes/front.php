@@ -1,6 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Front\HomeController;
+use App\Http\Controllers\Front\HomeController;
 
-Route::get('/', HomeController::class);
+Route::get('/', [HomeController::class, 'index']);
