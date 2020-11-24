@@ -19,7 +19,7 @@ class EmployeesTableSeeder extends Seeder
             'name' => 'Cyril de Wit',
             'email' => 'cyril@projecttrash.nl',
             'email_verified_at' => now(),
-            'password' => Hash::make('password'),
+            // 'password' => Hash::make('password'),
         ]);
     }
 }
