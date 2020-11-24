@@ -35,11 +35,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
-                ->namespace($this->namespace)
-                ->name('front.')
-                ->group(base_path('routes/front.php'));
-
-            Route::middleware('web')
                 ->domain(subdomain('manage'))
                 ->namespace($this->namespace)
                 ->name('management.')
@@ -49,6 +44,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->name('customer.')
                 ->group(base_path('routes/customer.php'));
+
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->name('front.')
+                ->group(base_path('routes/front.php'));
         });
     }
 
