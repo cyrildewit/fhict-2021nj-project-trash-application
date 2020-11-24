@@ -40,6 +40,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/front.php'));
 
             Route::middleware('web')
+                ->domain(subdomain('manage'))
                 ->namespace($this->namespace)
                 ->name('management.')
                 ->group(base_path('routes/management.php'));
