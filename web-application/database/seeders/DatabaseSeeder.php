@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Employee;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // $this->run(EmployeesTableSeeder::class);
+        // $this->run(ProductsTableSeeder::class);
+
+        Employee::create([
+            'name' => 'Cyril de Wit',
+            'email' => 'cyril@projecttrash.nl',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+        ]);
         Product::create([
             'barcode' => '5449000111678',
             'title' => 'Chaudfontaine Mineraalwater',
