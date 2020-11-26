@@ -12,8 +12,10 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "laravel-lang/lang": "~7.0",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
+        "overtrue/laravel-lang": "~3.0",
         "spatie/laravel-json-api-paginate": "^1.9",
         "spatie/laravel-query-builder": "^3.3"
     },
