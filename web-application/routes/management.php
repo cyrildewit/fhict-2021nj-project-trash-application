@@ -10,10 +10,50 @@ use App\Http\Controllers\Management\Auth\AuthenticatedSessionController;
 // use App\Http\Controllers\Management\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Management\DashboardController;
+use App\Http\Controllers\Management\CustomerController;
+use App\Http\Controllers\Management\TrashCanController;
+use App\Http\Controllers\Management\ProductController;
+use App\Http\Controllers\Management\TrashCanMapController;
+use App\Http\Controllers\Management\TrashCanCustomerController;
+
 
 Route::middleware('auth:management')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    Route::prefix('customers')->name('customer.')->group(function () {
+
+        Route::get('/', [CustomerController::class, 'index'])->name('index');
+        Route::get('/{uuid}', [CustomerController::class, 'show'])->name('show');
+        Route::get('/{uuid}/edit', [CustomerController::class, 'edit'])->name('edit');
+        Route::get('/create', [CustomerController::class, 'create'])->name('create');
+        Route::put('/{uuid}/update', [CustomerController::class, 'update'])->name('update');
+
+    });
+
+    Route::prefix('trash-can')->name('trash-can.')->group(function () {
+
+        Route::get('/', [TrashCanController::class, 'index'])->name('index');
+        Route::get('/{uuid}', [TrashCanController::class, 'show'])->name('show');
+        Route::get('/{uuid}/edit', [TrashCanController::class, 'edit'])->name('edit');
+        Route::get('/create', [TrashCanController::class, 'create'])->name('create');
+        Route::put('/{uuid}/update', [TrashCanController::class, 'update'])->name('update');
+        Route::put('/{uuid}/customer/update', [TrashCanCustomerController::class, 'update'])->name('customer.update');
+
+    });
+
+    Route::prefix('trash-cans-map')->name('trash-cans-map.')->group(function () {
+
+        Route::get('/', [TrashCanMapController::class, 'index'])->name('index');
+
+    });
+
+    Route::prefix('products')->name('products.')->group(function () {
+
+        Route::get('/', [ProductController::class, 'index'])->name('index');
+        Route::get('/create', [ProductController::class, 'create'])->name('create');
+
+    });
 
 });
 

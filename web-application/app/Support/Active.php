@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use Route;
+use Illuminate\Support\Str;
 
 class Active
 {
@@ -25,6 +26,6 @@ class Active
      */
     public static function isActiveRouteResourceName($resourceName)
     {
-        return starts_with(Route::currentRouteName(), $resourceName);
+        return Str::startsWith(Route::currentRouteName(), $resourceName);
     }
 }

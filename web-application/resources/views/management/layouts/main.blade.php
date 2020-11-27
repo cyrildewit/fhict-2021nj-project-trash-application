@@ -19,6 +19,10 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('management/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    @include('management.partials.custom-css')
+
+    @stack('head')
+
 </head>
 
 <body id="page-top">
@@ -66,15 +70,20 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="exampleModalLabel">Weet u zeker dat u wil uitloggen?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Sluiten">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+
+                <div class="modal-body">Selecteer hieronder "Uitloggen" als u uw huidige sessie wil beëindigen.</div>
+
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                    <form action="{{ route('management.auth.logout') }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-primary">Uitloggen</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -93,9 +102,11 @@
     <!-- Page level plugins -->
     <script src="{{ asset('management/vendor/chart.js/Chart.min.js') }}"></script>
 
-    <!-- Page level custom scripts -->
+    @stack('footer')
+
+    {{-- <!-- Page level custom scripts -->
     <script src="{{ asset('management/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('management/js/demo/chart-pie-demo.js') }}"></script>
+    <script src="{{ asset('management/js/demo/chart-pie-demo.js') }}"></script> --}}
 
 </body>
 

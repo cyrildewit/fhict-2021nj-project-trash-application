@@ -19,6 +19,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('management/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    @include('management.partials.custom-css')
+
 </head>
 
 <body class="bg-gradient-primary">

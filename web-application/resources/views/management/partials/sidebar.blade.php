@@ -13,7 +13,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item {{ \App\Support\Active::isActiveRoute('management.dashboard.index') ? 'active' : nulll }}">
+    <li class="nav-item {{ \App\Support\Active::isActiveRoute('management.dashboard.index') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('management.dashboard.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -24,25 +24,56 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Interface
-    </div>
+        Klantenbeheer
+    </div> --}}
+
+    <li class="nav-item {{ \App\Support\Active::isActiveRoute('management.customer.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('management.customer.index') }}">
+            <i class="fas fa-users fa-chart-area"></i>
+            <span>Klanten</span>
+        </a>
+    </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item {{ \App\Support\Active::isActiveRouteResourceName('management.trash-can.') || \App\Support\Active::isActiveRouteResourceName('management.trash-cans-map.')  ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Components</span>
+            <i class="fas fa-fw fa-trash-alt"></i>
+            <span>Prullenbakken</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse {{ \App\Support\Active::isActiveRouteResourceName('management.trash-can.') || \App\Support\Active::isActiveRouteResourceName('management.trash-cans-map.')  ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="buttons.html">Buttons</a>
-                <a class="collapse-item" href="cards.html">Cards</a>
+                {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
+                <a class="collapse-item" href="{{ route('management.trash-can.index') }}">Alle Prullenbakken</a>
+                <a class="collapse-item" href="{{ route('management.trash-cans-map.index') }}">Kaart</a>
             </div>
         </div>
     </li>
 
+    {{-- <li class="nav-item {{ \App\Support\Active::isActiveRoute('management.trash-can.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('management.trash-can.index') }}">
+            <i class="fas fa-trash-alt fa-chart-area"></i>
+            <span>Prullenbakken</span>
+        </a>
+    </li> --}}
+
+    {{-- <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Beheer
+    </div> --}}
+
+    <li class="nav-item {{ \App\Support\Active::isActiveRoute('management.products.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('management.products.index') }}">
+            <i class="fas fa-fw fa-shopping-basket"></i>
+            <span>Producten</span>
+        </a>
+    </li>
+
+
+{{--
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -104,6 +135,7 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span></a>
     </li>
+    --}}
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -111,7 +143,7 @@
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div> --}}
+    </div>
 
     {{-- <!-- Sidebar Message -->
     <div class="sidebar-card">

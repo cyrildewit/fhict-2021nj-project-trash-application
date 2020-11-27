@@ -3,9 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Employee;
+use App\Models\TrashCan;
+use App\Models\Customer;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,11 +23,102 @@ class DatabaseSeeder extends Seeder
         // $this->run(ProductsTableSeeder::class);
 
         Employee::create([
+            'uuid' => Str::uuid(),
             'name' => 'Cyril de Wit',
             'email' => 'cyril@projecttrash.nl',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
         ]);
+
+        TrashCan::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Prullenbak Schootsestraat 1',
+            'location' => 'Schootsestraat 102, Eindhoven',
+            'latitude' => 51.44186,
+            'longtitude' => 5.4793,
+            'customer_id' => 1,
+        ]);
+
+        TrashCan::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Prullenbak Schootsestraat 2',
+            'location' => 'Schootsestraat 102, Eindhoven',
+            'latitude' => 51.44186,
+            'longtitude' => 5.48113,
+            'customer_id' => 1,
+        ]);
+
+        TrashCan::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Prullenbak PSV stadium 1',
+            'location' => 'Schootsestraat 102, Eindhoven',
+            'latitude' => 51.4415,
+            'longtitude' => 5.46969,
+            'customer_id' => 1,
+        ]);
+
+        TrashCan::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Strijp',
+            'location' => 'Schootsestraat 102, Eindhoven',
+            'latitude' => 51.44069,
+            'longtitude' => 5.45467,
+            'customer_id' => 1,
+        ]);
+
+        // TrashCan::create([
+        //     'uuid' => Str::uuid(),
+        //     'name' => 'Strijp',
+        //     'location' => 'Schootsestraat 102, Eindhoven',
+        //     'latitude' => 51.91842,
+        //     'longtitude' => 4.48234,
+        //     'customer_id' => 3,
+        // ]);
+
+        TrashCan::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Strijp',
+            'location' => 'Schootsestraat 102, Eindhoven',
+            'latitude' => 51.45144,
+            'longtitude' => 5.48181,
+            'customer_id' => 2,
+        ]);
+
+        TrashCan::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Strijp',
+            'location' => 'Schootsestraat 102, Eindhoven',
+            'latitude' => 51.45173,
+            'longtitude' => 5.47935,
+            'customer_id' => 2,
+        ]);
+
+        // for ($i = 0; $i < 200; $i++) {
+        //     TrashCan::create([
+        //         'uuid' => Str::uuid(),
+        //         'name' => 'Prullenbak #' . $i,
+        //         'location' => 'Berenweg 2, Eindhoven',
+        //         'latitude' => 51.44186,
+        //         'longtitude' => 5.4793,
+        //     ]);
+        // }
+
+        Customer::create([
+            'name' => 'Gemeente Eindhoven',
+            'uuid' => Str::uuid(),
+            'latitude' => 51.43481,
+            'longtitude' => 5.4913,
+            'zoom' => 12,
+        ]);
+
+        Customer::create([
+            'name' => 'Fontys Hogeschool',
+            'uuid' => Str::uuid(),
+            'latitude' => 51.45139,
+            'longtitude' => 5.48367,
+            'zoom' => 16,
+        ]);
+
         Product::create([
             'barcode' => '5449000111678',
             'title' => 'Chaudfontaine Mineraalwater',
