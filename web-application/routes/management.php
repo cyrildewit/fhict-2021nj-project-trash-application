@@ -24,9 +24,10 @@ Route::middleware('auth:management')->group(function () {
     Route::prefix('customers')->name('customer.')->group(function () {
 
         Route::get('/', [CustomerController::class, 'index'])->name('index');
+        Route::post('/', [CustomerController::class, 'store'])->name('store');
+        Route::get('/create', [CustomerController::class, 'create'])->name('create');
         Route::get('/{uuid}', [CustomerController::class, 'show'])->name('show');
         Route::get('/{uuid}/edit', [CustomerController::class, 'edit'])->name('edit');
-        Route::get('/create', [CustomerController::class, 'create'])->name('create');
         Route::put('/{uuid}/update', [CustomerController::class, 'update'])->name('update');
 
     });
@@ -34,9 +35,9 @@ Route::middleware('auth:management')->group(function () {
     Route::prefix('trash-can')->name('trash-can.')->group(function () {
 
         Route::get('/', [TrashCanController::class, 'index'])->name('index');
+        Route::get('/create', [TrashCanController::class, 'create'])->name('create');
         Route::get('/{uuid}', [TrashCanController::class, 'show'])->name('show');
         Route::get('/{uuid}/edit', [TrashCanController::class, 'edit'])->name('edit');
-        Route::get('/create', [TrashCanController::class, 'create'])->name('create');
         Route::put('/{uuid}/update', [TrashCanController::class, 'update'])->name('update');
         Route::put('/{uuid}/customer/update', [TrashCanCustomerController::class, 'update'])->name('customer.update');
 
@@ -48,7 +49,7 @@ Route::middleware('auth:management')->group(function () {
 
     });
 
-    Route::prefix('products')->name('products.')->group(function () {
+    Route::prefix('products')->name('product.')->group(function () {
 
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('/create', [ProductController::class, 'create'])->name('create');
