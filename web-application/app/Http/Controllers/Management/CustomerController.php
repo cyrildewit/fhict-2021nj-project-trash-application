@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\TrashCan;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -16,6 +17,28 @@ class CustomerController extends Controller
         return view('management.customer.index', [
             'customers' => $customers,
         ]);
+    }
+
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longtitude' => 'required|numeric',
+            'zoom' => 'required|integer',
+        ]);
+
+        $customer = Customer::create(
+            array_merge(
+                $validated,
+                [
+                    'uuid' => Str::uuid(),
+                ]
+            )
+        );
+
+        return redirect()->route('management.customer.show', ['uuid' => $customer->uuid]);
     }
 
     public function show(string $uuid)
@@ -45,6 +68,11 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('management.customer.create');
+    }
+
     public function update(Request $request, string $uuid)
     {
         $customer = Customer::where('uuid', $uuid)->first();
@@ -53,9 +81,9 @@ class CustomerController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string',
-            // 'location' => 'required|string',
-            // 'latitude' => 'required|numeric',
-            // 'longtitude' => 'required|numeric',
+            'latitude' => 'required|numeric',
+            'longtitude' => 'required|numeric',
+            'zoom' => 'required|integer',
         ]);
 
         $customer->update($validated);

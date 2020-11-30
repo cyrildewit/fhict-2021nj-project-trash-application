@@ -65,8 +65,8 @@
         Beheer
     </div> --}}
 
-    <li class="nav-item {{ \App\Support\Active::isActiveRoute('management.products.index') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('management.products.index') }}">
+    <li class="nav-item {{ \App\Support\Active::isActiveRoute('management.product.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('management.product.index') }}">
             <i class="fas fa-fw fa-shopping-basket"></i>
             <span>Producten</span>
         </a>

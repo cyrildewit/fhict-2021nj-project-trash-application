@@ -13,7 +13,7 @@ class TrashCanController extends Controller
     {
         $trashCans = TrashCan::with('customer')->paginate(25);
 
-        return view('management.trashcans.index', [
+        return view('management.trash-can.index', [
             'trashCans' => $trashCans,
         ]);
     }
@@ -24,7 +24,7 @@ class TrashCanController extends Controller
 
         abort_unless($trashCan, 404);
 
-        return view('management.trashcans.show', [
+        return view('management.trash-can.show', [
             'trashCan' => $trashCan,
         ]);
     }
@@ -37,7 +37,7 @@ class TrashCanController extends Controller
 
         $customers = Customer::all();
 
-        return view('management.trashcans.edit', [
+        return view('management.trash-can.edit', [
             'trashCan' => $trashCan,
             'customers' => $customers,
         ]);

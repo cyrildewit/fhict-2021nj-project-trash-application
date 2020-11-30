@@ -104,6 +104,7 @@ class DatabaseSeeder extends Seeder
         // }
 
         Customer::create([
+            'uuid' => Str::uuid(),
             'name' => 'Gemeente Eindhoven',
             'uuid' => Str::uuid(),
             'latitude' => 51.43481,
@@ -112,6 +113,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Customer::create([
+            'uuid' => Str::uuid(),
             'name' => 'Fontys Hogeschool',
             'uuid' => Str::uuid(),
             'latitude' => 51.45139,
@@ -120,34 +122,43 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::create([
+            'uuid' => Str::uuid(),
             'barcode' => '5449000111678',
             'title' => 'Chaudfontaine Mineraalwater',
             'seperation_tray' => 'pmd',
             'information' => 'Plastic fles in pmd bak',
+            'deposit_amount' => 15,
         ]);
 
         Product::create([
+            'uuid' => Str::uuid(),
             'barcode' => '90162909',
             'title' => 'Redbull',
             'seperation_tray' => 'pmd',
             'information' => 'Blik in pmd bak',
+            'deposit_amount' => 15,
         ]);
 
         Product::create([
+            'uuid' => Str::uuid(),
             'barcode' => '8710739200023',
             'title' => 'Originele kanjers stroopwafels',
             'seperation_tray' => 'pmd',
             'information' => 'Verpakking in   pmd bak',
+            'deposit_amount' => 15,
         ]);
 
         Product::create([
+            'uuid' => Str::uuid(),
             'barcode' => '5449000238740',
             'title' => 'Fuze Tea',
             'seperation_tray' => 'pmd',
             'information' => 'Plastic fles in pmd bak',
+            'deposit_amount' => 15,
         ]);
 
         Product::create([
+            'uuid' => Str::uuid(),
             'barcode' => '640522710850',
             'title' => 'Raspberry Pie Verpakking',
             'seperation_tray' => 'paper',
@@ -155,6 +166,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::create([
+            'uuid' => Str::uuid(),
             'barcode' => '8711000870228',
             'title' => 'Ice Macchiato',
             'seperation_tray' => 'paper',
@@ -162,6 +174,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::create([
+            'uuid' => Str::uuid(),
             'barcode' => '8718452119233',
             'title' => 'Citroën',
             'seperation_tray' => 'gft',
@@ -169,10 +182,36 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::create([
+            'uuid' => Str::uuid(),
             'barcode' => '8713300079189',
             'title' => 'Dubbel Drank',
             'seperation_tray' => 'pmd',
             'information' => 'Verpakking in   plastic bak',
+            'deposit_amount' => 15,
+        ]);
+
+        Product::create([
+            'uuid' => Str::uuid(),
+            'barcode' => '8713893009402',
+            'title' => 'Appel',
+            'seperation_tray' => 'gft',
+            'information' => 'Verpakking in   gft bak',
+        ]);
+
+        Product::create([
+            'uuid' => Str::uuid(),
+            'barcode' => '8715600240030',
+            'title' => 'Pepsi Max',
+            'seperation_tray' => 'pmd',
+            'information' => 'Verpakking in   plastic bak',
+        ]);
+
+        Product::create([
+            'uuid' => Str::uuid(),
+            'barcode' => '8718449096554',
+            'title' => 'Pepsi Max',
+            'seperation_tray' => 'pmd',
+            'information' => 'Jumbo Mango & gauve vitamine drink',
         ]);
     }
 }

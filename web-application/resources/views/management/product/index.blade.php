@@ -43,29 +43,31 @@
                         <tr>
                         <th scope="col">#</th>
                         <th scope="col">Naam</th>
-                        <th scope="col">Locatie</th>
-                        <th scope="col">Klant</th>
+                        <th scope="col">Barcode</th>
+                        <th scope="col">Scheidingsbank</th>
+                        <th scope="col">Informatie</th>
                         <th scope="col">Acties</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($trashCans as $trashCan)
+                        @foreach ($products as $product)
                         <tr>
-                            <th scope="row">{{ $trashCan->id }}</th>
-                            <td><a href="{{ route('management.trash-can.show', ['uuid' => $trashCan->uuid]) }}">{{ $trashCan->name }}</a></td>
-                            <td>{{ $trashCan->location }}</td>
-                            <td><a href="#">Fontys Hogeschool</a></td>
+                            <th scope="row">{{ $product->id }}</th>
+                            <td><a href="{{ route('management.trash-can.show', ['uuid' => $product->uuid]) }}">{{ $product->title }}</a></td>
+                            <td>{{ $product->barcode }}</td>
+                            <td>{{ $product->seperation_tray }}</td>
+                            <td>{{ $product->information }}</td>
                             <td>
-                                <a href="{{ route('management.trash-can.show', ['uuid' => $trashCan->uuid]) }}" class="btn btn-info btn-sm">Bekijken</a>
-                                <a href="{{ route('management.trash-can.edit', ['uuid' => $trashCan->uuid]) }}" class="btn btn-warning btn-sm">Bewerken</a>
-                                {{-- <a hef="{{ route('management.trash-can.de', ['uuid' => $trashCan->uuid]) }}" class="btn btn-danger btn-small">Bewerken</a> --}}
+                                <a href="{{ route('management.trash-can.show', ['uuid' => $product->uuid]) }}" class="btn btn-info btn-sm">Bekijken</a>
+                                <a href="{{ route('management.trash-can.edit', ['uuid' => $product->uuid]) }}" class="btn btn-warning btn-sm">Bewerken</a>
+                                {{-- <a hef="{{ route('management.trash-can.de', ['uuid' => $product->uuid]) }}" class="btn btn-danger btn-small">Bewerken</a> --}}
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
 
-                {{ $trashCans->links() }}
+                {{ $products->links() }}
 
             </div>
         </div>

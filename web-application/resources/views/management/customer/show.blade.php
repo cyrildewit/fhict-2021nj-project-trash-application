@@ -7,7 +7,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Klant {{ $customer->name }}</h1>
     <div>
-        <a href="{{ route('management.trash-can.edit', ['uuid' => $customer->uuid]) }}" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i
+        <a href="{{ route('management.customer.edit', ['uuid' => $customer->uuid]) }}" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i
             class="fas fa-edit fa-sm text-white-50"></i> Bewerken</a>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
             class="fas fa-trash fa-sm text-white-50"></i> Verwijderen</a>
