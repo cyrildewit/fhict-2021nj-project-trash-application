@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Product;
 use App\Models\Employee;
+use App\Models\User;
 use App\Models\TrashCan;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
@@ -37,6 +38,14 @@ class DatabaseSeeder extends Seeder
             'latitude' => 51.44186,
             'longtitude' => 5.4793,
             'customer_id' => 1,
+        ]);
+
+        User::create([
+            'name' => 'John Doe',
+            'email' => 'doe@example.org',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'nfc_uid' => 'test',
         ]);
 
         TrashCan::create([
