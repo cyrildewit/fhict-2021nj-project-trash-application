@@ -29,16 +29,19 @@ Route::middleware('auth:management')->group(function () {
         Route::get('/{uuid}', [CustomerController::class, 'show'])->name('show');
         Route::get('/{uuid}/edit', [CustomerController::class, 'edit'])->name('edit');
         Route::put('/{uuid}/update', [CustomerController::class, 'update'])->name('update');
+        Route::delete('{uuid}', [CustomerController::class, 'destroy'])->name('destroy');
 
     });
 
     Route::prefix('trash-can')->name('trash-can.')->group(function () {
 
         Route::get('/', [TrashCanController::class, 'index'])->name('index');
+        Route::post('/', [TrashCanController::class, 'store'])->name('store');
         Route::get('/create', [TrashCanController::class, 'create'])->name('create');
         Route::get('/{uuid}', [TrashCanController::class, 'show'])->name('show');
         Route::get('/{uuid}/edit', [TrashCanController::class, 'edit'])->name('edit');
         Route::put('/{uuid}/update', [TrashCanController::class, 'update'])->name('update');
+        Route::delete('{uuid}', [TrashCanController::class, 'destroy'])->name('destroy');
         Route::put('/{uuid}/customer/update', [TrashCanCustomerController::class, 'update'])->name('customer.update');
 
     });

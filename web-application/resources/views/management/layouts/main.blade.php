@@ -89,6 +89,8 @@
         </div>
     </div>
 
+    @stack('below_content')
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('management/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('management/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

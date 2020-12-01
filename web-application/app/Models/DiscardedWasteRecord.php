@@ -20,4 +20,9 @@ class DiscardedWasteRecord extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function trashCan()
+    {
+        return $this->belongsTo(TrashCan::class);
+    }
 }

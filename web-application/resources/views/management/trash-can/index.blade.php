@@ -54,7 +54,7 @@
                             <th scope="row">{{ $trashCan->id }}</th>
                             <td><a href="{{ route('management.trash-can.show', ['uuid' => $trashCan->uuid]) }}">{{ $trashCan->name }}</a></td>
                             <td>{{ $trashCan->location }}</td>
-                            <td><a href="{{ route('management.customer.show', ['uuid' => $trashCan->customer->uuid]) }}">{{ $trashCan->customer->name }}</a></td>
+                            <td>@if(!empty($trashCan->customer))<a href="{{ route('management.customer.show', ['uuid' => $trashCan->customer->uuid]) }}">{{ $trashCan->customer->name }}</a>@else niet gespecificeerd @endif</td>
                             <td>
                                 <a href="{{ route('management.trash-can.show', ['uuid' => $trashCan->uuid]) }}" class="btn btn-info btn-sm">Bekijken</a>
                                 <a href="{{ route('management.trash-can.edit', ['uuid' => $trashCan->uuid]) }}" class="btn btn-warning btn-sm">Bewerken</a>

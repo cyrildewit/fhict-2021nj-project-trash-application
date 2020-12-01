@@ -3,14 +3,11 @@
 @section('title', 'Prullenbakken #'.$trashCan->uuid)
 
 @section('content')
-<!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Prullenbak #{{ $trashCan->uuid }}</h1>
     <div>
-        <a href="{{ route('management.trash-can.edit', ['uuid' => $trashCan->uuid]) }}" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i
-            class="fas fa-edit fa-sm text-white-50"></i> Bewerken</a>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
-            class="fas fa-trash fa-sm text-white-50"></i> Verwijderen</a>
+        <a href="{{ route('management.trash-can.edit', ['uuid' => $trashCan->uuid]) }}" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fas fa-edit fa-sm text-white-50"></i> Bewerken</a>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#destroyResourceModal"><i class="fas fa-trash fa-sm text-white-50"></i> Verwijderen</a>
     </div>
 </div>
 
@@ -33,7 +30,7 @@
                     <li class="list-group-item"><strong>Locatie:</strong> {{ $trashCan->location }}</li>
                     <li class="list-group-item"><strong>Latitude:</strong> {{ $trashCan->latitude }}</li>
                     <li class="list-group-item"><strong>Longtitude:</strong> {{ $trashCan->longtitude }}</li>
-                    <li class="list-group-item"><strong>Klant:</strong> <a href="{{ route('management.customer.show', ['uuid' => $trashCan->customer->uuid]) }}">{{ $trashCan->customer->name }}</a></li>
+                    <li class="list-group-item"><strong>Klant:</strong> @if(!empty($trashCan->customer))<a href="{{ route('management.customer.show', ['uuid' => $trashCan->customer->uuid]) }}">{{ $trashCan->customer->name }}</a>@else niet gespecificeerd @endif</li>
                 </ul>
 
             </div>
@@ -61,6 +58,34 @@
     </div>
 </div>
 @endsection
+
+@push('below_content')
+<div class="modal fade" id="destroyResourceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Weet u zeker dat u deze prullenbak wilt verwijderen?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Sluiten">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">Selecteer hieronder "Verwijderen" om de prullenbak te verwijderen.</div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                <form action="{{ route('management.trash-can.destroy', ['uuid' => $trashCan->uuid]) }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+
+                    <button type="submit" class="btn btn-primary">Verwijderen</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endpush
 
 @push('footer')
 <script>

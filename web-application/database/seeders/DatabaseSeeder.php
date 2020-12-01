@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'doe@example.org',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
-            'nfc_uid' => 'test',
+            'nfc_uid' => '906718937129',
         ]);
 
         TrashCan::create([

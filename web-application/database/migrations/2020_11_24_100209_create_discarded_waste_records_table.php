@@ -18,6 +18,7 @@ class CreateDiscardedWasteRecordsTable extends Migration
             $table->uuid('uuid');
             $table->integer('user_id');
             $table->string('product_id');
+            $table->integer('trash_can_id');
             $table->timestamps();
         });
     }
