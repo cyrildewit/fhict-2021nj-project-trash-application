@@ -32,7 +32,6 @@
                     {{ csrf_field() }}
                     {{ method_field('POST') }}
 
-
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
@@ -62,16 +61,30 @@
                             <div class="form-group">
                                 <label for="exampleInputName">Scheidingsbak</label>
 
-                                <select class="custom-select" name="customer_uuid">
-                                    @foreach($customers as $customer)
-                                    <option value="{{ $customer->uuid }}" {{ $customer->id == $trashCan->customer->id ? 'selected' : '' }}>{{ $customer->name }}</option>
+                                <select class="custom-select" name="seperation_tray">
+                                    @foreach(\App\Enums\SeperationTray::asSelectArray() as $key => $description)
+                                    <option value="{{ $key }}">{{ $description }}</option>
                                     @endforeach
                                 </select>
 
-                                @if($errors->has('customer_uuid'))
-                                    <div class="invalid-feedback">{{ $errors->first('customer_uuid') }}</div>
+                                @if($errors->has('seperation_tray'))
+                                    <div class="invalid-feedback">{{ $errors->first('seperation_tray') }}</div>
                                 @endif
                             </div>
+
+                            {{-- <div class="form-group">
+                                <label for="exampleInputName">Scheidingsbak</label>
+
+                                <select class="custom-select" name="seperation_tray">
+                                    @foreach(\App\Enums\SeperationTray::asSelectArray() as $key => $description)
+                                    <option value="{{ $key }}" {{ $key == $product->seperation_tray ? 'selected' : '' }}>{{ $description }}</option>
+                                    @endforeach
+                                </select>
+
+                                @if($errors->has('seperation_tray'))
+                                    <div class="invalid-feedback">{{ $errors->first('seperation_tray') }}</div>
+                                @endif
+                            </div> --}}
 
                             <div class="form-group">
                                 <label for="exampleInputName">Informatie</label>
@@ -86,14 +99,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputName">Informatie</label>
+                                <label for="exampleInputName">Statiegeld (in centen)</label>
 
-                                <input type="text" class="form-control form-control-user {{ $errors->has('information') ? 'is-invalid' : '' }}"
-                                    id="exampleInputInformation" name="information"
-                                    placeholder="Informatie" value="{{ old('information') }}">
+                                <input type="text" class="form-control form-control-user {{ $errors->has('deposit_amount') ? 'is-invalid' : '' }}"
+                                    id="exampleInputDepositAmount" name="deposit_amount"
+                                    placeholder="Statiegeld (in centen)" value="{{ old('deposit_amount') }}">
 
-                                @if($errors->has('information'))
-                                    <div class="invalid-feedback">{{ $errors->first('information') }}</div>
+                                @if($errors->has('deposit_amount'))
+                                    <div class="invalid-feedback">{{ $errors->first('deposit_amount') }}</div>
                                 @endif
                             </div>
 

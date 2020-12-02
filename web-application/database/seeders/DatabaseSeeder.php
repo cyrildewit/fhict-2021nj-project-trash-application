@@ -10,6 +10,7 @@ use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use App\Enums\SeperationTray;
 
 class DatabaseSeeder extends Seeder
 {
@@ -133,8 +134,8 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'uuid' => Str::uuid(),
             'barcode' => '5449000111678',
-            'title' => 'Chaudfontaine Mineraalwater',
-            'seperation_tray' => 'pmd',
+            'name' => 'Chaudfontaine Mineraalwater',
+            'seperation_tray' => SeperationTray::PMD,
             'information' => 'Plastic fles in pmd bak',
             'deposit_amount' => 15,
         ]);
@@ -142,8 +143,8 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'uuid' => Str::uuid(),
             'barcode' => '90162909',
-            'title' => 'Redbull',
-            'seperation_tray' => 'pmd',
+            'name' => 'Redbull',
+            'seperation_tray' => SeperationTray::PMD,
             'information' => 'Blik in pmd bak',
             'deposit_amount' => 15,
         ]);
@@ -151,8 +152,8 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'uuid' => Str::uuid(),
             'barcode' => '8710739200023',
-            'title' => 'Originele kanjers stroopwafels',
-            'seperation_tray' => 'pmd',
+            'name' => 'Originele kanjers stroopwafels',
+            'seperation_tray' => SeperationTray::PMD,
             'information' => 'Verpakking in   pmd bak',
             'deposit_amount' => 15,
         ]);
@@ -160,8 +161,8 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'uuid' => Str::uuid(),
             'barcode' => '5449000238740',
-            'title' => 'Fuze Tea',
-            'seperation_tray' => 'pmd',
+            'name' => 'Fuze Tea',
+            'seperation_tray' => SeperationTray::PMD,
             'information' => 'Plastic fles in pmd bak',
             'deposit_amount' => 15,
         ]);
@@ -169,32 +170,32 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'uuid' => Str::uuid(),
             'barcode' => '640522710850',
-            'title' => 'Raspberry Pie Verpakking',
-            'seperation_tray' => 'paper',
+            'name' => 'Raspberry Pie Verpakking',
+            'seperation_tray' => SeperationTray::Paper,
             'information' => 'Verpakking in   papieren bak',
         ]);
 
         Product::create([
             'uuid' => Str::uuid(),
             'barcode' => '8711000870228',
-            'title' => 'Ice Macchiato',
-            'seperation_tray' => 'paper',
+            'name' => 'Ice Macchiato',
+            'seperation_tray' => SeperationTray::Paper,
             'information' => 'Dop mag in      plastic bak',
         ]);
 
         Product::create([
             'uuid' => Str::uuid(),
             'barcode' => '8718452119233',
-            'title' => 'Citroën',
-            'seperation_tray' => 'gft',
+            'name' => 'Citroën',
+            'seperation_tray' => SeperationTray::GFT,
             'information' => 'Verpakking in   plastic bak',
         ]);
 
         Product::create([
             'uuid' => Str::uuid(),
             'barcode' => '8713300079189',
-            'title' => 'Dubbel Drank',
-            'seperation_tray' => 'pmd',
+            'name' => 'Dubbel Drank',
+            'seperation_tray' => SeperationTray::PMD,
             'information' => 'Verpakking in   plastic bak',
             'deposit_amount' => 15,
         ]);
@@ -202,24 +203,24 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'uuid' => Str::uuid(),
             'barcode' => '8713893009402',
-            'title' => 'Appel',
-            'seperation_tray' => 'gft',
+            'name' => 'Appel',
+            'seperation_tray' => SeperationTray::GFT,
             'information' => 'Verpakking in   gft bak',
         ]);
 
         Product::create([
             'uuid' => Str::uuid(),
             'barcode' => '8715600240030',
-            'title' => 'Pepsi Max',
-            'seperation_tray' => 'pmd',
+            'name' => 'Pepsi Max',
+            'seperation_tray' => SeperationTray::PMD,
             'information' => 'Verpakking in   plastic bak',
         ]);
 
         Product::create([
             'uuid' => Str::uuid(),
             'barcode' => '8718449096554',
-            'title' => 'Pepsi Max',
-            'seperation_tray' => 'pmd',
+            'name' => 'Pepsi Max',
+            'seperation_tray' => SeperationTray::PMD,
             'information' => 'Jumbo Mango & gauve vitamine drink',
         ]);
     }

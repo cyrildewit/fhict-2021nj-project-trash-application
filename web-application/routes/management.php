@@ -55,7 +55,12 @@ Route::middleware('auth:management')->group(function () {
     Route::prefix('products')->name('product.')->group(function () {
 
         Route::get('/', [ProductController::class, 'index'])->name('index');
+        Route::post('/', [ProductController::class, 'store'])->name('store');
         Route::get('/create', [ProductController::class, 'create'])->name('create');
+        Route::get('/{uuid}', [ProductController::class, 'show'])->name('show');
+        Route::get('/{uuid}/edit', [ProductController::class, 'edit'])->name('edit');
+        Route::put('/{uuid}/update', [ProductController::class, 'update'])->name('update');
+        Route::delete('{uuid}', [ProductController::class, 'destroy'])->name('destroy');
 
     });
 

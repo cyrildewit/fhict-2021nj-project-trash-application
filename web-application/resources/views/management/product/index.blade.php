@@ -54,14 +54,14 @@
                         @foreach ($products as $product)
                         <tr>
                             <th scope="row">{{ $product->id }}</th>
-                            <td><a href="{{ route('management.trash-can.show', ['uuid' => $product->uuid]) }}">{{ $product->title }}</a></td>
+                            <td><a href="{{ route('management.product.show', ['uuid' => $product->uuid]) }}">{{ $product->name }}</a></td>
                             <td>{{ $product->barcode }}</td>
                             <td>{{ $product->seperation_tray }}</td>
                             <td>{{ $product->information }}</td>
                             <td>{{ $product->deposit_amount }}</td>
                             <td>
-                                <a href="{{ route('management.trash-can.show', ['uuid' => $product->uuid]) }}" class="btn btn-info btn-sm">Bekijken</a>
-                                <a href="{{ route('management.trash-can.edit', ['uuid' => $product->uuid]) }}" class="btn btn-warning btn-sm">Bewerken</a>
+                                <a href="{{ route('management.product.show', ['uuid' => $product->uuid]) }}" class="btn btn-info btn-sm">Bekijken</a>
+                                <a href="{{ route('management.product.edit', ['uuid' => $product->uuid]) }}" class="btn btn-warning btn-sm">Bewerken</a>
                                 {{-- <a hef="{{ route('management.trash-can.de', ['uuid' => $product->uuid]) }}" class="btn btn-danger btn-small">Bewerken</a> --}}
                             </td>
                         </tr>
