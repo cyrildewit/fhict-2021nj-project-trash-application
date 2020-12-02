@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('barcode')->unique();
             $table->string('title');
             $table->string('seperation_tray');
+            $table->enum('type', SeperationTray::getValues())
+                ->default(SeperationTray::ResidualWaste);
             $table->text('information');
             $table->integer('deposit_amount')->nullable();
             $table->timestamps();

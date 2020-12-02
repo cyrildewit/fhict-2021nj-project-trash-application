@@ -46,6 +46,7 @@
                         <th scope="col">Barcode</th>
                         <th scope="col">Scheidingsbank</th>
                         <th scope="col">Informatie</th>
+                        <th scope="col">Statiegeld</th>
                         <th scope="col">Acties</th>
                         </tr>
                     </thead>
@@ -57,6 +58,7 @@
                             <td>{{ $product->barcode }}</td>
                             <td>{{ $product->seperation_tray }}</td>
                             <td>{{ $product->information }}</td>
+                            <td>{{ $product->deposit_amount }}</td>
                             <td>
                                 <a href="{{ route('management.trash-can.show', ['uuid' => $product->uuid]) }}" class="btn btn-info btn-sm">Bekijken</a>
                                 <a href="{{ route('management.trash-can.edit', ['uuid' => $product->uuid]) }}" class="btn btn-warning btn-sm">Bewerken</a>

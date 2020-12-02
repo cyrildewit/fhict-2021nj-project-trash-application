@@ -18,10 +18,10 @@ class UserDiscardedWasteRecordController extends Controller
         $trashCanUUID = $request->header('X-TrashCan-UUID');
 
         $validated = $request->validate([
-            'product_id' => 'required|string',
+            'barcode' => 'required|string',
         ]);
 
-        $product = Product::find($request->product_id);
+        $product = Product::where('barcode', $request->barcode)->first();
 
         abort_unless($product, 404);
 
@@ -34,14 +34,12 @@ class UserDiscardedWasteRecordController extends Controller
         abort_unless($trashCan, 404);
 
         $discardedWasteRecord = DiscardedWasteRecord::create(
-            array_merge(
-                $validated,
-                [
+            [
                     'uuid' => Str::uuid(),
                     'user_id' => $user->id,
+                    'product_id' => $product->id,
                     'trash_can_id' => $trashCan->id,
                 ]
-            )
         );
 
         if (!empty($product->deposit_amount)) {
