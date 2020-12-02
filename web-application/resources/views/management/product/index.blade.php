@@ -44,7 +44,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Naam</th>
                         <th scope="col">Barcode</th>
-                        <th scope="col">Scheidingsbank</th>
+                        <th scope="col">Scheidingsbak</th>
                         <th scope="col">Informatie</th>
                         <th scope="col">Statiegeld</th>
                         <th scope="col">Acties</th>
