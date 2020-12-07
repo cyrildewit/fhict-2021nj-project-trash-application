@@ -15,7 +15,7 @@ use App\Http\Controllers\Management\TrashCanController;
 use App\Http\Controllers\Management\ProductController;
 use App\Http\Controllers\Management\TrashCanMapController;
 use App\Http\Controllers\Management\TrashCanCustomerController;
-
+use App\Http\Controllers\Management\AccountController;
 
 Route::middleware('auth:management')->group(function () {
 
@@ -49,6 +49,14 @@ Route::middleware('auth:management')->group(function () {
     Route::prefix('trash-cans-map')->name('trash-cans-map.')->group(function () {
 
         Route::get('/', [TrashCanMapController::class, 'index'])->name('index');
+
+    });
+
+    Route::prefix('account')->name('auth.user.account.')->group(function () {
+
+        Route::get('/', [AccountController::class, 'index'])->name('index');
+        Route::put('/profile/update', [AccountController::class, 'profileUpdate'])->name('profile.update');
+        Route::put('/password/update', [AccountController::class, 'passwordUpdate'])->name('password.update');
 
     });
 

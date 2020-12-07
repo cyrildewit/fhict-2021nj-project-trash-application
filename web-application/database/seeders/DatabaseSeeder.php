@@ -32,6 +32,46 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
+        Employee::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Daan Visseren',
+            'email' => 'daan@projecttrash.nl',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+        ]);
+
+        Employee::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Guido Terstal',
+            'email' => 'guido@projecttrash.nl',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+        ]);
+
+        Employee::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Pim Thijssen',
+            'email' => 'pim@projecttrash.nl',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+        ]);
+
+        Employee::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Fons van der Veen',
+            'email' => 'fons@projecttrash.nl',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+        ]);
+
+        Employee::create([
+            'uuid' => Str::uuid(),
+            'name' => 'Sam Vos',
+            'email' => 'sam@projecttrash.nl',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+        ]);
+
         TrashCan::create([
             'uuid' => Str::uuid(),
             'name' => 'Prullenbak Schootsestraat 1',

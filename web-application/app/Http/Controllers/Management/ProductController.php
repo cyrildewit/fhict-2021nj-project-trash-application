@@ -107,6 +107,6 @@ class ProductController extends Controller
 
         $request->session()->flash('message', 'Succesvol product verwijderd!');
 
-        return redirect()->route('management.trash-can.index');
+        return redirect()->route('management.product.index');
     }
 }
