@@ -6,8 +6,20 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\DiscardedWasteRecordController;
 use App\Http\Controllers\Api\UserDiscardedWasteRecordController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\Auth\User\AuthController;
 
 Route::prefix('v1')->group(function () {
+    Route::prefix('auth')->group(function () {
+
+        Route::prefix('user')->group(function () {
+            Route::post('login', [AuthController::class, 'login']);
+            Route::post('logout', [AuthController::class, 'logout']);
+            Route::post('refresh', [AuthController::class, 'refresh']);
+            Route::post('me', [AuthController::class, 'me']);
+        });
+
+    });
+
     Route::prefix('products')->group(function () {
         Route::get('/', [ProductController::class, 'index']);
         Route::get('/findByBarcode/{barcode}', [ProductController::class, 'showByBarcode']);
