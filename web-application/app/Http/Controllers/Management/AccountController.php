@@ -33,6 +33,9 @@ class AccountController extends Controller
 
         $employee->update($validated);
 
+        $request->session()->flash('status', 'success');
+        $request->session()->flash('message', 'Profiel is aangepast!');
+
         return redirect()->back();
     }
 
@@ -53,6 +56,9 @@ class AccountController extends Controller
 
         $employee->password = Hash::make($request->new_password);
         $employee->save();
+
+        $request->session()->flash('status', 'success');
+        $request->session()->flash('message', 'Wachtwoord is aangepast!');
 
         return redirect()->back();
     }

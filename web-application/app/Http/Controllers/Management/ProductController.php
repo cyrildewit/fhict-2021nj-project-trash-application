@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::paginate(20);
 
@@ -63,6 +63,9 @@ class ProductController extends Controller
 
         $product->update($validated);
 
+        $request->session()->flash('status', 'success');
+        $request->session()->flash('message', 'Succesvol product bijgewerkt!');
+
         return redirect()->back();
     }
 
@@ -90,7 +93,13 @@ class ProductController extends Controller
             )
         );
 
-        return redirect()->route('management.product.show', ['uuid' => $product->uuid]);
+        $request->session()->flash('status', 'success');
+        $request->session()->flash('message', 'Succesvol product toegevoegd!');
+
+        return redirect()
+            ->route('management.product.show', [
+                'uuid' => $product->uuid,
+            ]);
     }
 
     /**
@@ -105,7 +114,8 @@ class ProductController extends Controller
 
         $product->delete();
 
-        $request->session()->flash('message', 'Succesvol product verwijderd!');
+        $request->session()->flash('status', 'success');
+        $request->session()->flash('message', 'Succesvol product verwijdert!');
 
         return redirect()->route('management.product.index');
     }
