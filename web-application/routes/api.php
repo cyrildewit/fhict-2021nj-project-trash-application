@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\DiscardedWasteRecordController;
 use App\Http\Controllers\Api\UserDiscardedWasteRecordController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\Auth\User\AuthController;
+use App\Http\Controllers\Api\Auth\User\RegisteredUserController;
 
 Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
@@ -16,6 +17,9 @@ Route::prefix('v1')->group(function () {
             Route::post('logout', [AuthController::class, 'logout']);
             Route::post('refresh', [AuthController::class, 'refresh']);
             Route::post('me', [AuthController::class, 'me']);
+
+            Route::post('/register', [RegisteredUserController::class, 'store'])
+                ->middleware('guest:user-api');
         });
 
     });
