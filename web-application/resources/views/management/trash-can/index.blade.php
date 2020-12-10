@@ -10,6 +10,10 @@
             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
 </div>
 
+@if(session()->has('message'))
+    <x-status-message :type="session('status')" :message="session('message')"></x-status-message>
+@endif
+
 <div class="row">
 
     <div class="col-lg-12">

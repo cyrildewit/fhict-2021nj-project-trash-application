@@ -20,7 +20,7 @@ class ProductController extends Controller
         $products = QueryBuilder::for(Product::class)
             ->allowedFilters([
                 AllowedFilter::exact('id'),
-                'title',
+                'name',
                 AllowedFilter::exact('barcode'),
             ])
             ->jsonPaginate();
@@ -28,8 +28,14 @@ class ProductController extends Controller
         return new ProductCollection($products);
     }
 
-    public function showByBarcode($barcode)
+    public function showByBarcode(Request $request, $barcode)
     {
+        // $trashCanUUID = $request->header('X-TrashCan-UUID');
+
+        // // if () {}
+
+        // \Log::info($trashCanUUID);
+
         $product = QueryBuilder::for(Product::class)
             ->where('barcode', $barcode)
             ->first();
