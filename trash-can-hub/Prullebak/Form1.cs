@@ -44,16 +44,14 @@ namespace Prullebak
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-
-            //{"De externe server heeft een fout geretourneerd: (404) Niet gevonden."}
             if (e.KeyCode == Keys.Enter && connected == true)
             {
 
                 barcode = textBox1.Text;
-                //string url = "http://10.0.0.8/api/v1/products/findByBarcode/" + textBox1.Text;
-                string url = "http://8ae60850091d.ngrok.io/api/v1/products/findByBarcode/" + textBox1.Text;
+                string url = "http://10.0.0.8/api/v1/products/findByBarcode/" + textBox1.Text;
+                //string url = "http://93a67ab169dd.ngrok.io/api/v1/products/findByBarcode/" + textBox1.Text;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@url);
-                request.Headers.Add("X-TrashCan-UUID", "Basic ashAHasd87asdHasdas");
+                request.Headers.Add("X-TrashCan-UUID", "0cc21cec-04f0-4882-b94e-6bf39a8d1b80");
                 HttpWebResponse response;
                 try
                 {
@@ -121,24 +119,35 @@ namespace Prullebak
             port.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            label1.Text = port.ReadLine();
-
-        }
-
 
         private void DataReceivedHandler(
                         object sender,
                         SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
-            string indata = sp.ReadExisting();
-            Console.WriteLine(indata);
-            //string url = "http://10.0.0.8/api/v1/users/findByNFC/" +  indata + "/discarded-waste-records?barcode=" + barcode;
-            string url = "http://8ae60850091d.ngrok.io/api/v1/users/findByNFC/" + indata + "/discarded-waste-records?barcode=" + barcode;
+            string uid = ""; // create a variable that we will add on what we get via the serial port
+            // normaly the serial port separates the id in multiple things so we keep reading untill there is an #
+            // somtimes the input is blank and this breaks the Substring so in that case make the string "nothing"
+            string indata = sp.ReadExisting(); // read the serial port
+            while (indata.Substring(indata.Length - 1) != "#")
+            {
+                Console.WriteLine("nfc check");
+                if (indata != "nothing"){
+                    uid = uid + indata; // add input the uid
+                }
+                indata = sp.ReadExisting();
+                if (indata == "")
+                {
+                    indata = "nothing";
+                }
+            }
+            uid = uid + indata;
+            uid = uid.Remove(uid.Length - 1);
+            Console.WriteLine(uid);
+            /*string url = "http://10.0.0.8/api/v1/users/findByNFC/" + uid + "/discarded-waste-records?barcode=" + barcode;
+            //string url = "http://93a67ab169dd.ngrok.io/api/v1/users/findByNFC/" + indata + "/discarded-waste-records?barcode=" + barcode;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@url);
-            request.Headers.Add("X-TrashCan-UUID", "6697746d-2d47-4ebc-9da8-b7c714800319");
+            request.Headers.Add("X-TrashCan-UUID", "0cc21cec-04f0-4882-b94e-6bf39a8d1b80");
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
             HttpWebResponse response;
@@ -148,8 +157,9 @@ namespace Prullebak
             }
             catch
             {
+                port.Write("#1error in geld toewijzen\n");
                 Console.WriteLine("error in geld toewijzen");
-            }
+            } */
         }
     }
 }
