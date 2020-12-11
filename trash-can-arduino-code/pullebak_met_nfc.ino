@@ -1,5 +1,14 @@
 #include <LiquidCrystal.h>
 #include <LedControl.h>
+#include <SPI.h>
+#include <RFID.h>
+
+#define SS_PIN 4
+#define RST_PIN 5
+
+RFID rfid(SS_PIN,RST_PIN);
+
+String serNum[5];
 
 int trigPin0 = 47;
 int echoPin0 = 46;
@@ -127,6 +136,7 @@ void bewegen(int choose, int trigPin, int echoPin)
     }
   }
   matrix[choose].clearDisplay(0);
+  sendUIDToVisualStudio();
 }
 
 boolean useSensor(int trigPin, int echoPin)
@@ -152,7 +162,7 @@ boolean useSensor(int trigPin, int echoPin)
   duration = pulseIn(echoPin, HIGH);
   distance = (duration / 2) / 29.1;
 */
-  Serial.println(distance);
+  //Serial.println(distance);
   
   if (distance < 21)
   {
@@ -167,14 +177,35 @@ void lcdStatieGeld()
   lcd.clear();
   lcd.print("Je krijgt");
   lcd.setCursor(0, 1);
-  lcd.print("25 cent");
+  lcd.print("15 cent");
   klaar = true;
+}
+
+
+void sendUIDToVisualStudio(){
+    
+  for (int i = 0; i < 1000; i++) { 
+    if(rfid.isCard()){
+    if(rfid.readCardSerial()){
+      String uid = "";
+      char cardCode[20];
+      sprintf(cardCode, "%u%u%u%u%u", rfid.serNum[0], rfid.serNum[1], rfid.serNum[2], rfid.serNum[3], rfid.serNum[4]);
+      Serial.print(cardCode);
+      Serial.print("#");
+      i = 1000;
+         }
+      }
+    rfid.halt();
+    delay(10);
+  }
 }
 
 void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(9600);
+    SPI.begin();
+    rfid.init();
   for (int i = 0; i < 4; i++)
   {
     matrix[i].shutdown(0, false);  //The MAX72XX is in power-saving mode on startup
@@ -204,26 +235,28 @@ void loop()
       getCommandStringLCD();
       displayText();
     }
-    if (commandString.equals("pmd"))
+    if (commandString.equals("0"))
     {
       bewegen(0, trigArray[0], echoArray[0]);
     }
 
-    if (commandString.equals("paper"))
+    if (commandString.equals("1"))
     {
       bewegen(1, trigArray[1], echoArray[1]);
     }
 
-    if (commandString.equals("gft"))
+    if (commandString.equals("2"))
     {
       bewegen(2, trigArray[2], echoArray[2]);
     }
 
-    if (commandString.equals("rest"))
+    if (commandString.equals("3"))
     {
       bewegen(3, trigArray[3], echoArray[3]);
     }
 
     inputString = "";
   } 
+  
+  
 }
