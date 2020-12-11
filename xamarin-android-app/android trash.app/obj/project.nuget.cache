@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jTQdlBuyHJDxA0HKvCOfz+zO6NYK42Of16JnD6yohmnpnsN68GsGwh89ScpKKu0WnEX+mZObgdYS3C+LQqlp1Q==",
+  "dgSpecHash": "KLv8TL9J1GExco8vOx4gD8iH92b6yLbKDc9y7G7G35iDijSmyTj8CK7NofejXTc8PxQ9Ukd5yEAiZL89wKBO3w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fwhva\\OneDrive\\Documenten\\TrashApp\\android trash.app\\android trash.app\\android trash.app.csproj",
+  "projectFilePath": "C:\\Users\\fwhva\\OneDrive\\Documenten\\code\\fhict-2021nj-project-trash-application\\xamarin-android-app\\android trash.app\\android trash.app.csproj",
   "expectedPackageFiles": [
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.android.arch.core.common\\1.1.1.3\\xamarin.android.arch.core.common.1.1.1.3.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.android.arch.core.runtime\\1.1.1.3\\xamarin.android.arch.core.runtime.1.1.1.3.nupkg.sha512",

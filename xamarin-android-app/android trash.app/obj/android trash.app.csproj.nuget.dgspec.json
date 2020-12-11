@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fwhva\\OneDrive\\Documenten\\TrashApp\\android trash.app\\android trash.app\\android trash.app.csproj": {}
+    "C:\\Users\\fwhva\\OneDrive\\Documenten\\code\\fhict-2021nj-project-trash-application\\xamarin-android-app\\android trash.app\\android trash.app.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fwhva\\OneDrive\\Documenten\\TrashApp\\android trash.app\\android trash.app\\android trash.app.csproj": {
+    "C:\\Users\\fwhva\\OneDrive\\Documenten\\code\\fhict-2021nj-project-trash-application\\xamarin-android-app\\android trash.app\\android trash.app.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fwhva\\OneDrive\\Documenten\\TrashApp\\android trash.app\\android trash.app\\android trash.app.csproj",
+        "projectUniqueName": "C:\\Users\\fwhva\\OneDrive\\Documenten\\code\\fhict-2021nj-project-trash-application\\xamarin-android-app\\android trash.app\\android trash.app.csproj",
         "projectName": "android trash.app",
-        "projectPath": "C:\\Users\\fwhva\\OneDrive\\Documenten\\TrashApp\\android trash.app\\android trash.app\\android trash.app.csproj",
+        "projectPath": "C:\\Users\\fwhva\\OneDrive\\Documenten\\code\\fhict-2021nj-project-trash-application\\xamarin-android-app\\android trash.app\\android trash.app.csproj",
         "packagesPath": "C:\\Users\\fwhva\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fwhva\\OneDrive\\Documenten\\TrashApp\\android trash.app\\android trash.app\\obj\\",
+        "outputPath": "C:\\Users\\fwhva\\OneDrive\\Documenten\\code\\fhict-2021nj-project-trash-application\\xamarin-android-app\\android trash.app\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
