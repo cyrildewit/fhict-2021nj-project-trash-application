@@ -9,10 +9,13 @@
     <div>
         <a href="{{ route('management.customer.edit', ['uuid' => $customer->uuid]) }}" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i
             class="fas fa-edit fa-sm text-white-50"></i> Bewerken</a>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
-            class="fas fa-trash fa-sm text-white-50"></i> Verwijderen</a>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#destroyResourceModal"><i class="fas fa-trash fa-sm text-white-50"></i> Verwijderen</a>
     </div>
 </div>
+
+@if(session()->has('message'))
+    <x-status-message :type="session('status')" :message="session('message')"></x-status-message>
+@endif
 
 <div class="row">
 
@@ -118,6 +121,34 @@
     </div>
 </div>
 @endsection
+
+@push('below_content')
+<div class="modal fade" id="destroyResourceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Weet u zeker dat u deze klant wilt verwijderen?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Sluiten">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">Selecteer hieronder "Verwijderen" om de klant te verwijderen.</div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                <form action="{{ route('management.customer.destroy', ['uuid' => $customer->uuid]) }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+
+                    <button type="submit" class="btn btn-primary">Verwijderen</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endpush
 
 @push('footer')
 <script>

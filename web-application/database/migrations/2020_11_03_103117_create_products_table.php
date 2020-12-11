@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\SeperationTray;
 
 class CreateProductsTable extends Migration
 {
@@ -17,8 +18,9 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->string('barcode')->unique();
-            $table->string('title');
-            $table->string('seperation_tray');
+            $table->string('name');
+            $table->enum('seperation_tray', SeperationTray::getValues())
+                ->default(SeperationTray::ResidualWaste);
             $table->text('information');
             $table->integer('deposit_amount')->nullable();
             $table->timestamps();

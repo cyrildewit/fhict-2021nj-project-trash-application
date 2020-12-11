@@ -3,12 +3,19 @@
 @section('title', 'Producten')
 
 @section('content')
+
+
+
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Producten</h1>
     {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
 </div>
+
+@if(session()->has('message'))
+    <x-status-message :type="session('status')" :message="session('message')"></x-status-message>
+@endif
 
 <div class="row">
 
@@ -44,8 +51,9 @@
                         <th scope="col">#</th>
                         <th scope="col">Naam</th>
                         <th scope="col">Barcode</th>
-                        <th scope="col">Scheidingsbank</th>
+                        <th scope="col">Scheidingsbak</th>
                         <th scope="col">Informatie</th>
+                        <th scope="col">Statiegeld</th>
                         <th scope="col">Acties</th>
                         </tr>
                     </thead>
@@ -53,13 +61,14 @@
                         @foreach ($products as $product)
                         <tr>
                             <th scope="row">{{ $product->id }}</th>
-                            <td><a href="{{ route('management.trash-can.show', ['uuid' => $product->uuid]) }}">{{ $product->title }}</a></td>
+                            <td><a href="{{ route('management.product.show', ['uuid' => $product->uuid]) }}">{{ $product->name }}</a></td>
                             <td>{{ $product->barcode }}</td>
                             <td>{{ $product->seperation_tray }}</td>
                             <td>{{ $product->information }}</td>
+                            <td>{{ $product->deposit_amount }}</td>
                             <td>
-                                <a href="{{ route('management.trash-can.show', ['uuid' => $product->uuid]) }}" class="btn btn-info btn-sm">Bekijken</a>
-                                <a href="{{ route('management.trash-can.edit', ['uuid' => $product->uuid]) }}" class="btn btn-warning btn-sm">Bewerken</a>
+                                <a href="{{ route('management.product.show', ['uuid' => $product->uuid]) }}" class="btn btn-info btn-sm">Bekijken</a>
+                                <a href="{{ route('management.product.edit', ['uuid' => $product->uuid]) }}" class="btn btn-warning btn-sm">Bewerken</a>
                                 {{-- <a hef="{{ route('management.trash-can.de', ['uuid' => $product->uuid]) }}" class="btn btn-danger btn-small">Bewerken</a> --}}
                             </td>
                         </tr>

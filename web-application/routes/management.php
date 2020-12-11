@@ -15,7 +15,7 @@ use App\Http\Controllers\Management\TrashCanController;
 use App\Http\Controllers\Management\ProductController;
 use App\Http\Controllers\Management\TrashCanMapController;
 use App\Http\Controllers\Management\TrashCanCustomerController;
-
+use App\Http\Controllers\Management\AccountController;
 
 Route::middleware('auth:management')->group(function () {
 
@@ -52,10 +52,23 @@ Route::middleware('auth:management')->group(function () {
 
     });
 
+    Route::prefix('account')->name('auth.user.account.')->group(function () {
+
+        Route::get('/', [AccountController::class, 'index'])->name('index');
+        Route::put('/profile/update', [AccountController::class, 'profileUpdate'])->name('profile.update');
+        Route::put('/password/update', [AccountController::class, 'passwordUpdate'])->name('password.update');
+
+    });
+
     Route::prefix('products')->name('product.')->group(function () {
 
         Route::get('/', [ProductController::class, 'index'])->name('index');
+        Route::post('/', [ProductController::class, 'store'])->name('store');
         Route::get('/create', [ProductController::class, 'create'])->name('create');
+        Route::get('/{uuid}', [ProductController::class, 'show'])->name('show');
+        Route::get('/{uuid}/edit', [ProductController::class, 'edit'])->name('edit');
+        Route::put('/{uuid}/update', [ProductController::class, 'update'])->name('update');
+        Route::delete('{uuid}', [ProductController::class, 'destroy'])->name('destroy');
 
     });
 

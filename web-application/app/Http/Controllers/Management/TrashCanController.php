@@ -92,7 +92,7 @@ class TrashCanController extends Controller
      * @param  \App\Models\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(string $uuid)
+    public function destroy(Request $request, string $uuid)
     {
         $trashCan = TrashCan::where('uuid', $uuid)->first();
 
@@ -100,7 +100,7 @@ class TrashCanController extends Controller
 
         $trashCan->delete();
 
-        // Session::flash('message', 'Succesvol partner verwijderd!');
+        $request->session()->flash('message', 'Succesvol prullenbak verwijderd!');
 
         return redirect()->route('management.trash-can.index');
     }
