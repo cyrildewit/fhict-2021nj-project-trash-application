@@ -21,12 +21,14 @@ namespace Prullebak
         String[] ports;
         SerialPort port;
         string barcode = "";
+        Trash Trash1;
 
 
         public Form1()
         {
             InitializeComponent();
             getAvailableComPorts();
+            Trash1 = new Trash();
             foreach (string port in ports)
             {
                 comboBox1.Items.Add(port);
@@ -47,7 +49,6 @@ namespace Prullebak
             if (e.KeyCode == Keys.Enter && connected == true)
             {
 
-                barcode = textBox1.Text;
                 string url = "http://10.0.0.8/api/v1/products/findByBarcode/" + textBox1.Text;
                 //string url = "http://93a67ab169dd.ngrok.io/api/v1/products/findByBarcode/" + textBox1.Text;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@url);
@@ -58,16 +59,9 @@ namespace Prullebak
                     response = (HttpWebResponse)request.GetResponse();
                     string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
-                    JsonDocument doc = JsonDocument.Parse(content);
-                    JsonElement root = doc.RootElement;
-
-                    string andwoord = Convert.ToString(root.GetProperty("data").GetProperty("information"));
-                    port.Write("#1" + andwoord + "\n");
-                    Console.WriteLine(andwoord);
-
-                    andwoord = Convert.ToString(root.GetProperty("data").GetProperty("seperation_tray"));
-                    port.Write("#" + andwoord + "\n");
-                    Console.WriteLine(andwoord);
+                    Trash1.ParseToJsonAndReadData(content);
+                    port.Write("#1" + Trash1.Information + "\n");
+                    port.Write("#" + Trash1.Barcode + "\n");
                 }
                 catch
                 {
@@ -144,7 +138,7 @@ namespace Prullebak
             uid = uid + indata;
             uid = uid.Remove(uid.Length - 1);
             Console.WriteLine(uid);
-            /*string url = "http://10.0.0.8/api/v1/users/findByNFC/" + uid + "/discarded-waste-records?barcode=" + barcode;
+            string url = "http://10.0.0.8/api/v1/users/findByNFC/" + uid + "/discarded-waste-records?barcode=" + Trash1.Barcode;
             //string url = "http://93a67ab169dd.ngrok.io/api/v1/users/findByNFC/" + indata + "/discarded-waste-records?barcode=" + barcode;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@url);
             request.Headers.Add("X-TrashCan-UUID", "0cc21cec-04f0-4882-b94e-6bf39a8d1b80");
@@ -159,7 +153,7 @@ namespace Prullebak
             {
                 port.Write("#1error in geld toewijzen\n");
                 Console.WriteLine("error in geld toewijzen");
-            } */
+            } 
         }
     }
 }
