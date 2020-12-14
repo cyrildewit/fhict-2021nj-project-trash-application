@@ -18,6 +18,7 @@ class HomeView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 24),
+            Text('Hole'),
           ],
         ),
       ),

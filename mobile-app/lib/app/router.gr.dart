@@ -9,9 +9,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../ui/views/account/account_view.dart';
 import '../ui/views/home/home_view.dart';
 import '../ui/views/nfc_links/nfc_links_view.dart';
+import '../ui/views/settings/settings_view.dart';
 import '../ui/views/startup/startup_view.dart';
 import '../ui/views/statistics/statistics_view.dart';
 
@@ -20,13 +20,13 @@ class Routes {
   static const String homeView = '/home-view';
   static const String statisticsView = '/statistics-view';
   static const String nfcLinksView = '/nfc-links-view';
-  static const String accountView = '/account-view';
+  static const String settingsView = '/settings-view';
   static const all = <String>{
     startupView,
     homeView,
     statisticsView,
     nfcLinksView,
-    accountView,
+    settingsView,
   };
 }
 
@@ -38,7 +38,7 @@ class Router extends RouterBase {
     RouteDef(Routes.homeView, page: HomeView),
     RouteDef(Routes.statisticsView, page: StatisticsView),
     RouteDef(Routes.nfcLinksView, page: NfcLinksView),
-    RouteDef(Routes.accountView, page: AccountView),
+    RouteDef(Routes.settingsView, page: SettingsView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -67,9 +67,9 @@ class Router extends RouterBase {
         settings: data,
       );
     },
-    AccountView: (data) {
+    SettingsView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => AccountView(),
+        builder: (context) => SettingsView(),
         settings: data,
       );
     },

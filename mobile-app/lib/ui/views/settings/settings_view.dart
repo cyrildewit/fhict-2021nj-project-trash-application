@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import 'package:project_trash/app/locator.dart';
-import 'package:project_trash/ui/views/account/account_viewmodel.dart';
+import 'package:project_trash/ui/views/settings/settings_viewmodel.dart';
 
-class AccountView extends StatelessWidget {
+class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<AccountViewModel>.reactive(
+    return ViewModelBuilder<SettingsViewModel>.reactive(
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
       builder: (context, model, child) => Container(
@@ -16,11 +16,11 @@ class AccountView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 12),
-            Text('Account page'),
+            Text('Settings page'),
           ],
         ),
       ),
-      viewModelBuilder: () => locator<AccountViewModel>(),
+      viewModelBuilder: () => locator<SettingsViewModel>(),
     );
   }
 }
