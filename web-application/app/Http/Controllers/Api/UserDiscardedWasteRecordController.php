@@ -11,47 +11,36 @@ use Illuminate\Http\Request;
 use Log;
 use Illuminate\Support\Str;
 use App\Http\Resources\DiscardedWasteRecordResource;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserDiscardedWasteRecordController extends Controller
 {
     public function store(Request $request, string $nfc)
     {
-        $trashCanUUID = $request->header('X-TrashCan-UUID');
-
         $validated = $request->validate([
             'barcode' => 'required|string',
         ]);
 
-        $product = Product::where('barcode', $request->barcode)->first();
-
-        Log::info('product not found', $product);
-        abort_unless($product, 404);
-
         $user = User::where('nfc_uid', $nfc)->first();
-
-        Log::info('user not found', $user);
-        abort_unless($user, 404);
-
+        $product = Product::where('barcode', $request->barcode)->first();
+        $trashCanUUID = $request->header('X-TrashCan-UUID');
         $trashCan = TrashCan::where('uuid', $trashCanUUID)->first();
 
-        Log::info('trash can not found', $trashCan);
-        abort_unless($trashCan, 404);
+        if ($user === null || $product === null || $trashCan === null) {
+            throw new ModelNotFoundException();
+        }
 
-        $discardedWasteRecord = DiscardedWasteRecord::create(
-            [
-                    'uuid' => Str::uuid(),
-                    'user_id' => $user->id,
-                    'product_id' => $product->id,
-                    'trash_can_id' => $trashCan->id,
-                ]
-        );
+        $discardedWasteRecord = DiscardedWasteRecord::create([
+            'uuid' => Str::uuid(),
+            'user_id' => $user->id,
+            'product_id' => $product->id,
+            'trash_can_id' => $trashCan->id,
+        ]);
 
         if (!empty($product->deposit_amount)) {
             $user->balance += $product->deposit_amount;
+            $user->save();
         }
-
-        $user->save();
-
 
         return new DiscardedWasteRecordResource($discardedWasteRecord);
     }
