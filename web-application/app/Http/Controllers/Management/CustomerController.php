@@ -38,6 +38,9 @@ class CustomerController extends Controller
             )
         );
 
+        $request->session()->flash('status', 'success');
+        $request->session()->flash('message', 'Succesvol klant aangemaakt!');
+
         return redirect()->route('management.customer.show', ['uuid' => $customer->uuid]);
     }
 
@@ -87,6 +90,9 @@ class CustomerController extends Controller
         ]);
 
         $customer->update($validated);
+
+        $request->session()->flash('status', 'success');
+        $request->session()->flash('message', 'Succesvol klant bijgewerkt!');
 
         return redirect()->back();
     }
