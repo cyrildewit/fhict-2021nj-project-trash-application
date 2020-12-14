@@ -10,8 +10,10 @@ namespace Prullebak
     class Trash
     {
         //properties 
-        public string Barcode { get; private set; }
-        public string Information { get; private set; }
+        public string barcode { get; private set; }
+        public string information { get; private set; }
+        public string seperationTray { get; private set; }
+        public string depositAmount { get; private set; }
 
         //Methods
         public void ParseToJsonAndReadData(string input)
@@ -19,12 +21,18 @@ namespace Prullebak
             JsonDocument doc = JsonDocument.Parse(input);
             JsonElement root = doc.RootElement;
 
-            Information = Convert.ToString(root.GetProperty("data").GetProperty("information"));
-            
-            Console.WriteLine(Information);
+            information = Convert.ToString(root.GetProperty("data").GetProperty("information"));
+            seperationTray = Convert.ToString(root.GetProperty("data").GetProperty("seperation_tray"));
+            barcode = Convert.ToString(root.GetProperty("data").GetProperty("barcode"));
+            depositAmount = Convert.ToString(root.GetProperty("data").GetProperty("deposit_amount"));
+            if (depositAmount == "")
+            {
+                depositAmount = "0";
+            }
+            Console.WriteLine(information);
+            Console.WriteLine(seperationTray);
 
-            Barcode = Convert.ToString(root.GetProperty("data").GetProperty("seperation_tray"));
-            Console.WriteLine(Barcode);
+            
         }
     }
 }

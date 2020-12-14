@@ -20,15 +20,18 @@ namespace Prullebak
         bool connected = false;
         String[] ports;
         SerialPort port;
-        string barcode = "";
-        Trash Trash1;
+        Trash trash1;
 
 
         public Form1()
         {
+            
+            trash1 = new Trash();
+
             InitializeComponent();
+
+            //get the com ports and put them in the dropdown box
             getAvailableComPorts();
-            Trash1 = new Trash();
             foreach (string port in ports)
             {
                 comboBox1.Items.Add(port);
@@ -59,14 +62,16 @@ namespace Prullebak
                     response = (HttpWebResponse)request.GetResponse();
                     string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
-                    Trash1.ParseToJsonAndReadData(content);
-                    port.Write("#1" + Trash1.Information + "\n");
-                    port.Write("#" + Trash1.Barcode + "\n");
+                    trash1.ParseToJsonAndReadData(content);
+                    port.Write("#^" + trash1.depositAmount + "\n");
+                    port.Write("#~" + trash1.information + "\n");
+                    port.Write("#" + trash1.seperationTray + "\n");
                 }
                 catch
                 {
-                    port.Write("#1" + "Error niet in   database\n");
-                    port.Write("#" + "rest" + "\n");
+                    port.Write("#^0\n");
+                    port.Write("#~Error niet in   database\n");
+                    port.Write("#4\n");
                     response = null;
                 }
 
@@ -121,39 +126,42 @@ namespace Prullebak
             SerialPort sp = (SerialPort)sender;
             string uid = ""; // create a variable that we will add on what we get via the serial port
             // normaly the serial port separates the id in multiple things so we keep reading untill there is an #
-            // somtimes the input is blank and this breaks the Substring so in that case make the string "nothing"
+            //Somtimes it returns nothing so we check if there is nothing and if that's true we just repeat
             string indata = sp.ReadExisting(); // read the serial port
-            while (indata.Substring(indata.Length - 1) != "#")
+            while (indata == "" || indata.Substring(indata.Length - 1) != "#")
             {
-                Console.WriteLine("nfc check");
-                if (indata != "nothing"){
-                    uid = uid + indata; // add input the uid
-                }
+                uid = uid + indata; // add input the uid
                 indata = sp.ReadExisting();
-                if (indata == "")
-                {
-                    indata = "nothing";
-                }
             }
             uid = uid + indata;
             uid = uid.Remove(uid.Length - 1);
             Console.WriteLine(uid);
-            string url = "http://10.0.0.8/api/v1/users/findByNFC/" + uid + "/discarded-waste-records?barcode=" + Trash1.Barcode;
+            
+            if (MakeCreditAddHTTPRequest(uid, trash1) == "error") //wijs geld toe
+            {
+                port.Write("#~error in geld   toewijzen\n");
+            }
+        }
+
+        private string MakeCreditAddHTTPRequest(string uid, Trash trash)
+        {
+            string url = "http://10.0.0.8/api/v1/users/findByNFC/" + uid + "/discarded-waste-records?barcode=" + trash.barcode;
             //string url = "http://93a67ab169dd.ngrok.io/api/v1/users/findByNFC/" + indata + "/discarded-waste-records?barcode=" + barcode;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@url);
-            request.Headers.Add("X-TrashCan-UUID", "0cc21cec-04f0-4882-b94e-6bf39a8d1b80");
+            request.Headers.Add("X-TrashCan-UUID", "92802dd2-654a-4beb-a3cb-98e15ad885c4");
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
             HttpWebResponse response;
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
+                return "";
             }
             catch
             {
-                port.Write("#1error in geld toewijzen\n");
                 Console.WriteLine("error in geld toewijzen");
-            } 
+                return "error";
+            }
         }
     }
 }
