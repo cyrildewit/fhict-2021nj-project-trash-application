@@ -16,6 +16,7 @@ use App\Http\Controllers\Management\ProductController;
 use App\Http\Controllers\Management\TrashCanMapController;
 use App\Http\Controllers\Management\TrashCanCustomerController;
 use App\Http\Controllers\Management\AccountController;
+use App\Http\Controllers\Management\UserController;
 
 Route::middleware('auth:management')->group(function () {
 
@@ -30,6 +31,19 @@ Route::middleware('auth:management')->group(function () {
         Route::get('/{uuid}/edit', [CustomerController::class, 'edit'])->name('edit');
         Route::put('/{uuid}/update', [CustomerController::class, 'update'])->name('update');
         Route::delete('{uuid}', [CustomerController::class, 'destroy'])->name('destroy');
+
+    });
+
+    Route::prefix('users')->name('user.')->group(function () {
+
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::post('/', [UserController::class, 'store'])->name('store');
+        Route::get('/create', [UserController::class, 'create'])->name('create');
+        Route::get('/{uuid}', [UserController::class, 'show'])->name('show');
+        Route::get('/{uuid}/edit', [UserController::class, 'edit'])->name('edit');
+        Route::put('/{uuid}/update', [UserController::class, 'update'])->name('update');
+        Route::delete('{uuid}', [UserController::class, 'destroy'])->name('destroy');
+        Route::put('/{uuid}/update-avatar', [UserController::class, 'updateAvatar'])->name('update-avatar');
 
     });
 

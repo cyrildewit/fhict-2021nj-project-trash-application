@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Auth\User;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User as UserResource;
 
 class AuthController extends Controller
 {
@@ -40,7 +41,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json($this->guard()->user());
+        return new UserResource($this->guard()->user());
     }
 
     /**

@@ -27,9 +27,16 @@
         Klantenbeheer
     </div> --}}
 
+    <li class="nav-item {{ \App\Support\Active::isActiveRoute('management.user.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('management.user.index') }}">
+            <i class="fas fa-users fa-chart-area"></i>
+            <span>Gebruikers</span>
+        </a>
+    </li>
+
     <li class="nav-item {{ \App\Support\Active::isActiveRoute('management.customer.index') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('management.customer.index') }}">
-            <i class="fas fa-users fa-chart-area"></i>
+            <i class="fas fa-user-tie fa-chart-area"></i>
             <span>Klanten</span>
         </a>
     </li>

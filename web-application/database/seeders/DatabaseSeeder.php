@@ -81,13 +81,18 @@ class DatabaseSeeder extends Seeder
             'customer_id' => 1,
         ]);
 
-        User::create([
+        $user = User::create([
+            'uuid' => Str::uuid(),
             'name' => 'John Doe',
             'email' => 'doe@example.org',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'nfc_uid' => '906718937129',
         ]);
+
+        $user->addMedia(resource_path('seeds/gPZwCbdS.jpg'))
+            ->preservingOriginal()
+            ->toMediaCollection('avatar', 'public');
 
         TrashCan::create([
             'uuid' => Str::uuid(),
