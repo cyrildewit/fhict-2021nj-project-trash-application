@@ -146,7 +146,6 @@ namespace Prullebak
         private string MakeCreditAddHTTPRequest(string uid, Trash trash)
         {
             string url = "http://10.0.0.8/api/v1/users/findByNFC/" + uid + "/discarded-waste-records?barcode=" + trash.barcode;
-            //string url = "http://93a67ab169dd.ngrok.io/api/v1/users/findByNFC/" + indata + "/discarded-waste-records?barcode=" + barcode;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@url);
             request.Headers.Add("X-TrashCan-UUID", "92802dd2-654a-4beb-a3cb-98e15ad885c4");
             request.Method = "POST";
