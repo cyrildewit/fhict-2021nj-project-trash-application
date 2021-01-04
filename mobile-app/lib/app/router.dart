@@ -4,6 +4,7 @@ import 'package:project_trash/ui/views/statistics/statistics_view.dart';
 import 'package:project_trash/ui/views/nfc_links/nfc_links_view.dart';
 import 'package:project_trash/ui/views/startup/startup_view.dart';
 import 'package:project_trash/ui/views/home/home_view.dart';
+import 'package:project_trash/ui/views/login/login_view.dart';
 
 @MaterialAutoRouter(
   routes: [
@@ -12,6 +13,7 @@ import 'package:project_trash/ui/views/home/home_view.dart';
     MaterialRoute(page: StatisticsView),
     MaterialRoute(page: NfcLinksView),
     MaterialRoute(page: SettingsView),
+    MaterialRoute(page: LoginView),
   ],
 )
 class $Router {}
