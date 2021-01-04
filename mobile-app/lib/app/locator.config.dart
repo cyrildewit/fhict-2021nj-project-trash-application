@@ -9,9 +9,11 @@ import 'package:injectable/injectable.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../ui/views/home/home_viewmodel.dart';
+import '../ui/views/login/login_viewmodel.dart';
 import '../ui/views/nfc_links/nfc_links_viewmodel.dart';
 import '../services/product_api_client.dart';
 import '../services/product_service.dart';
+import '../ui/views/register/register_viewmodel.dart';
 import '../ui/views/settings/settings_viewmodel.dart';
 import '../ui/views/statistics/statistics_viewmodel.dart';
 import '../services/third_party_services_module.dart';
@@ -33,7 +35,9 @@ GetIt $initGetIt(
 
   // Eager singletons must be registered in the right order
   gh.singleton<HomeViewModel>(HomeViewModel());
+  gh.singleton<LoginViewModel>(LoginViewModel());
   gh.singleton<NfcLinksViewModel>(NfcLinksViewModel());
+  gh.singleton<RegisterViewModel>(RegisterViewModel());
   gh.singleton<SettingsViewModel>(SettingsViewModel());
   gh.singleton<StatisticsViewModel>(StatisticsViewModel());
   return get;
