@@ -17,7 +17,7 @@ class StartupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<StartupViewModel>.reactive(
-      // onModelReady: (model) => model.initialise(),
+      onModelReady: (model) async => model.initialise(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           title: Text('Project TRASH'),
@@ -47,11 +47,12 @@ class StartupView extends StatelessWidget {
                 // decoration: Deco,
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: NetworkImage(
-                    'https://avatars1.githubusercontent.com/u/16477999?s=460&u=07f0424d8d360820cb8f6f5af520c7d5e77bd827&v=4',
+                    model.user?.avatarTinyUrl ?? ''
+                    // 'https://avatars1.githubusercontent.com/u/16477999?s=460&u=07f0424d8d360820cb8f6f5af520c7d5e77bd827&v=4',
                   ),
                 ),
-                accountName: new Text('Claudia Dekker'),
-                accountEmail: new Text("claudia.dekker@gmail.com"),
+                accountName: new Text(model.user?.name ?? ''),
+                accountEmail: new Text(model.user?.email ?? ''),
               ),
               ListTile(
                 leading: Icon(Icons.home),
