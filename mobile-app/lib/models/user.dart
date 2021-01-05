@@ -4,7 +4,16 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class User {
-  int id;
+  String uuid;
+
+  String name;
+
+  String email;
+
+  @JsonKey(name: 'avatar_tiny_url')
+  String avatarTinyUrl;
+
+  int balance;
 
   @JsonKey(name: 'updated_at')
   String updatedAt;
@@ -13,13 +22,26 @@ class User {
   String createdAt;
 
   User({
-    this.id,
+    this.uuid,
+    this.name,
+    this.email,
+    this.avatarTinyUrl,
+    this.balance,
     this.updatedAt,
     this.createdAt,
-    // this.languages,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
+
+  String getFormattedBalance() {
+    double _balance = 0;
+
+    if (this.balance != null) {
+      _balance = (this.balance / 100);
+    }
+
+    return _balance.toStringAsFixed(2);
+  }
 }

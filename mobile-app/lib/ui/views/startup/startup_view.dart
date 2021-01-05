@@ -4,12 +4,12 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'package:project_trash/app/locator.dart';
-import 'package:project_trash/app/router.gr.dart';
 import 'package:project_trash/ui/views/startup/startup_viewmodel.dart';
 import 'package:project_trash/ui/views/home/home_view.dart';
 import 'package:project_trash/ui/views/statistics/statistics_view.dart';
 import 'package:project_trash/ui/views/nfc_links/nfc_links_view.dart';
 import 'package:project_trash/ui/views/settings/settings_view.dart';
+import 'package:project_trash/ui/views/login/login_view.dart';
 
 class StartupView extends StatelessWidget {
   const StartupView({Key key}) : super(key: key);
@@ -17,9 +17,10 @@ class StartupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<StartupViewModel>.reactive(
+      // onModelReady: (model) => model.initialise(),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          title: Text('Project Trash'),
+          title: Text('Project TRASH'),
         ),
         // appBar: AppBar(
         //   backgroundColor: Colors.white,
@@ -75,7 +76,7 @@ class StartupView extends StatelessWidget {
             ],
           ),
         ),
-        body: getViewForIndex(model.currentIndex),
+        body: getViewForIndex(model.currentIndex, model),
         // floatingActionButton: FloatingActionButton(
         //   backgroundColor: Color(0xFF0779E4),
         //   onPressed: () async {
@@ -89,7 +90,7 @@ class StartupView extends StatelessWidget {
     );
   }
 
-  Widget getViewForIndex(int index) {
+  Widget getViewForIndex(int index, model) {
     switch (index) {
       case 0:
         return HomeView();

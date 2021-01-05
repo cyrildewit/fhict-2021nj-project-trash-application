@@ -16,7 +16,21 @@ class NfcLinksView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 12),
-            Text('NFC koppelingen'),
+            Text(
+              'NFC koppelingen',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 24),
+            RaisedButton(
+              child: Text('NFC druppel koppelen'),
+              onPressed: () {},
+            ),
+            SizedBox(height: 24),
+
+// ListView.
           ],
         ),
       ),
