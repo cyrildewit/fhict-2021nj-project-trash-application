@@ -12,17 +12,18 @@ namespace Prullebak
         //properties 
         public string barcode { get; private set; }
         public string information { get; private set; }
-        public string seperationTray { get; private set; }
+        public SeperationTray seperationTray { get; private set; }
         public string depositAmount { get; private set; }
 
-        //Methods
-        public void ParseToJsonAndReadData(string input)
+        public Trash(string barcode, HttpReqequesthandler http)
         {
+            string input = http.makeHttpRequest(barcode);
+
             JsonDocument doc = JsonDocument.Parse(input);
-            JsonElement root = doc.RootElement;
+            JsonElement root = doc.RootElement; 
 
             information = Convert.ToString(root.GetProperty("data").GetProperty("information"));
-            seperationTray = Convert.ToString(root.GetProperty("data").GetProperty("seperation_tray"));
+            seperationTray = (SeperationTray)Convert.ToInt32(Convert.ToString(root.GetProperty("data").GetProperty("seperation_tray")));
             barcode = Convert.ToString(root.GetProperty("data").GetProperty("barcode"));
             depositAmount = Convert.ToString(root.GetProperty("data").GetProperty("deposit_amount"));
             if (depositAmount == "")
@@ -31,8 +32,6 @@ namespace Prullebak
             }
             Console.WriteLine(information);
             Console.WriteLine(seperationTray);
-
-            
         }
     }
 }
