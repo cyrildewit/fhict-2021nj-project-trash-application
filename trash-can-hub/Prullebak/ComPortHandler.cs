@@ -30,9 +30,19 @@ namespace Prullebak
             port.Open();
         }
 
-        public void toLCD(string text)
+        public void selectArduinoMatrix(SeperationTray tray)
         {
-            port.Write(text);
+            port.Write("#" + Convert.ToString(tray) + "\n"); //to sent info we need start with an # and end with \n
+        }
+        
+        public void writeToLcd(string text)
+        {
+            port.Write("#~" + text + "\n"); //to sent to lcd we have to add ~ so it knows it's for the lcd
+        }
+
+        public void sentCreditInfo(string text)
+        {
+            port.Write("#^" + text + "\n"); // to sent credit info we add ^
         }
 
         private void DataReceivedHandler(

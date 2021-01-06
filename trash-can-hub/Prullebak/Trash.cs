@@ -17,21 +17,22 @@ namespace Prullebak
 
         public Trash(string barcode, HttpReqequesthandler http)
         {
+            this.barcode = barcode; 
             string input = http.makeHttpRequest(barcode);
-
-            JsonDocument doc = JsonDocument.Parse(input);
-            JsonElement root = doc.RootElement; 
-
-            information = Convert.ToString(root.GetProperty("data").GetProperty("information"));
-            seperationTray = (SeperationTray)Convert.ToInt32(Convert.ToString(root.GetProperty("data").GetProperty("seperation_tray")));
-            barcode = Convert.ToString(root.GetProperty("data").GetProperty("barcode"));
-            depositAmount = Convert.ToString(root.GetProperty("data").GetProperty("deposit_amount"));
-            if (depositAmount == "")
+            if (input != null)
             {
-                depositAmount = "0";
+                JsonDocument doc = JsonDocument.Parse(input);
+                JsonElement root = doc.RootElement;
+
+                information = Convert.ToString(root.GetProperty("data").GetProperty("information"));
+                seperationTray = (SeperationTray)Convert.ToInt32(Convert.ToString(root.GetProperty("data").GetProperty("seperation_tray")));
+                barcode = Convert.ToString(root.GetProperty("data").GetProperty("barcode"));
+                depositAmount = Convert.ToString(root.GetProperty("data").GetProperty("deposit_amount"));
+                if (depositAmount == "")
+                {
+                    depositAmount = "0";
+                }
             }
-            Console.WriteLine(information);
-            Console.WriteLine(seperationTray);
         }
     }
 }
