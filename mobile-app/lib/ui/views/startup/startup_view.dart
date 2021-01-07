@@ -44,12 +44,10 @@ class StartupView extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: <Widget>[
               UserAccountsDrawerHeader(
-                // decoration: Deco,
                 currentAccountPicture: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    model.user?.avatarTinyUrl ?? ''
-                    // 'https://avatars1.githubusercontent.com/u/16477999?s=460&u=07f0424d8d360820cb8f6f5af520c7d5e77bd827&v=4',
-                  ),
+                  backgroundImage: NetworkImage(model.user?.avatarTinyUrl ?? ''
+                      // 'https://avatars1.githubusercontent.com/u/16477999?s=460&u=07f0424d8d360820cb8f6f5af520c7d5e77bd827&v=4',
+                      ),
                 ),
                 accountName: new Text(model.user?.name ?? ''),
                 accountEmail: new Text(model.user?.email ?? ''),
@@ -59,11 +57,11 @@ class StartupView extends StatelessWidget {
                 title: Text('Home'),
                 onTap: () => model.navigateToIndex(0, context),
               ),
-              ListTile(
-                leading: Icon(Icons.bar_chart),
-                title: Text('Statistieken'),
-                onTap: () => model.navigateToIndex(1, context),
-              ),
+              // ListTile(
+              //   leading: Icon(Icons.bar_chart),
+              //   title: Text('Statistieken'),
+              //   onTap: () => model.navigateToIndex(1, context),
+              // ),
               ListTile(
                 leading: Icon(Icons.nfc),
                 title: Text('NFC koppelingen'),

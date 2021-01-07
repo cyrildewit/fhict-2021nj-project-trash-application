@@ -9,19 +9,20 @@ const String FetchUserBusyKey = 'fetch-user-key';
 
 class StartupViewModel extends IndexTrackingViewModel {
   AuthenticationService auth = locator<AuthenticationService>();
+  NavigationService navigation = locator<NavigationService>();
 
   User user;
 
   Future initialise() async {
+    // await this.auth.check();
+
     await this.getCurrentUser();
-    // if (user == null) {
-    //   navigateToLoginView();
-    // }
+
     notifyListeners();
   }
 
   void navigateToLoginView() {
-    locator<NavigationService>().navigateTo('/login-view');
+    navigation.navigateTo('/login-view');
   }
 
   void navigateToIndex(int value, context) {
