@@ -4,11 +4,14 @@ import 'package:injectable/injectable.dart';
 
 import 'package:project_trash/app/locator.dart';
 import 'package:project_trash/services/authentication_api_client.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 @lazySingleton
 class AuthenticationService {
   final AuthenticationApiClient authenticationApiClient =
       locator<AuthenticationApiClient>();
+
+  NavigationService navigation = locator<NavigationService>();
 
   User user;
   String accessToken;
@@ -26,11 +29,13 @@ class AuthenticationService {
   //   return authenticationApiClient.login(email, password);
   // }
 
-  // void check() {
-  //   if (this.token == null) {
-  //     // logout and redirect
-  //   }
-  // }
+  Future check() async {
+    if (this.accessToken == null) {
+      this.user = null;
+      this.accessToken = null;
+      navigation.navigateTo('/login-view');
+    }
+  }
 
   Future<User> currentUser() async {
     if (this.user != null) {
