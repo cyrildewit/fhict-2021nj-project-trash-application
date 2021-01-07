@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 import 'package:project_trash/app/locator.dart';
 import 'package:project_trash/ui/views/home/home_viewmodel.dart';
@@ -70,13 +71,23 @@ class HomeView extends StatelessWidget {
                       SizedBox(height: 24),
                       Row(
                         children: [
+                          // Expanded(
+                          //   child: RaisedButton(
+                          //     padding: EdgeInsets.symmetric(vertical: 16),
+                          //     child: Text('NFC identificatie aanzetten'),
+                          //     onPressed: () {
+                          //       model.linkNfc();
+                          //     },
+                          //   ),
+                          // ),
                           Expanded(
-                            child: RaisedButton(
-                              padding: EdgeInsets.symmetric(vertical: 16),
-                              child: Text('NFC identificatie aanzetten'),
-                              onPressed: () {
-                                model.linkNfc();
-                              },
+                            child: RoundedLoadingButton(
+                              child: Text(
+                                'NFC identificatie aanzetten',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              controller: model.btnController,
+                              onPressed: model.linkNfc,
                             ),
                           ),
                         ],
