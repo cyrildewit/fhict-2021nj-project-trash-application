@@ -28,6 +28,20 @@ class ProductController extends Controller
         return new ProductCollection($products);
     }
 
+    public function show(int $id)
+    {
+        $product = QueryBuilder::for(Product::class)
+            ->where('id', $id)
+            ->first();
+
+        if ($product === null) {
+
+            throw new ModelNotFoundException();
+        }
+
+        return new ProductResource($product);
+    }
+
     public function showByBarcode(Request $request, $barcode)
     {
         // $trashCanUUID = $request->header('X-TrashCan-UUID');

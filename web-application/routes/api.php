@@ -26,6 +26,7 @@ Route::prefix('v1')->group(function () {
 
     Route::prefix('products')->group(function () {
         Route::get('/', [ProductController::class, 'index']);
+        Route::get('/{id}', [ProductController::class, 'show']);
         Route::get('/findByBarcode/{barcode}', [ProductController::class, 'showByBarcode']);
     });
 
