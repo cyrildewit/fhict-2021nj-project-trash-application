@@ -4,28 +4,34 @@ part 'product.g.dart';
 
 @JsonSerializable()
 class Product {
-  int id;
+  String id;
+
+  @JsonKey(name: 'uid', nullable: true)
+  String uid;
 
   @JsonKey(name: 'barcode')
   String barcode;
 
-  @JsonKey(name: 'description', nullable: true)
-  String description;
+  @JsonKey(name: 'name')
+  String name;
 
-  @JsonKey(name: 'origin_locale')
-  String originLocale;
+  @JsonKey(name: 'information')
+  String information;
 
-  @JsonKey(name: 'thumbnail_tiny_url')
-  String thumbnailTinyUrl;
+  @JsonKey(name: 'deposit_amount')
+  String depositAmount;
 
-  @JsonKey(name: 'thumbnail_small_url')
-  String thumbnailSmallUrl;
+  // @JsonKey(name: 'thumbnail_tiny_url')
+  // String thumbnailTinyUrl;
 
-  @JsonKey(name: 'thumbnail_medium_url')
-  String thumbnailMediumUrl;
+  // @JsonKey(name: 'thumbnail_small_url')
+  // String thumbnailSmallUrl;
 
-  @JsonKey(name: 'thumbnail_large_url')
-  String thumbnailLargeUrl;
+  // @JsonKey(name: 'thumbnail_medium_url')
+  // String thumbnailMediumUrl;
+
+  // @JsonKey(name: 'thumbnail_large_url')
+  // String thumbnailLargeUrl;
 
   @JsonKey(name: 'updated_at')
   String updatedAt;
@@ -38,13 +44,14 @@ class Product {
   // List<IngredientAnnotation> ingredientAnnotations;
 
   Product({
-    this.id,
+    this.uid,
     this.barcode,
-    this.description,
-    this.thumbnailTinyUrl,
-    this.thumbnailSmallUrl,
-    this.thumbnailMediumUrl,
-    this.thumbnailLargeUrl,
+    this.name,
+    this.information,
+    // this.thumbnailTinyUrl,
+    // this.thumbnailSmallUrl,
+    // this.thumbnailMediumUrl,
+    // this.thumbnailLargeUrl,
     this.updatedAt,
     this.createdAt,
     // this.languages,

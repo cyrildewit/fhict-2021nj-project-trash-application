@@ -8,27 +8,24 @@ part of 'product.dart';
 
 Product _$ProductFromJson(Map<String, dynamic> json) {
   return Product(
-    id: json['id'] as int,
+    uid: json['uid'] as String,
     barcode: json['barcode'] as String,
-    description: json['description'] as String,
-    thumbnailTinyUrl: json['thumbnail_tiny_url'] as String,
-    thumbnailSmallUrl: json['thumbnail_small_url'] as String,
-    thumbnailMediumUrl: json['thumbnail_medium_url'] as String,
-    thumbnailLargeUrl: json['thumbnail_large_url'] as String,
+    name: json['name'] as String,
+    information: json['information'] as String,
     updatedAt: json['updated_at'] as String,
     createdAt: json['created_at'] as String,
-  )..originLocale = json['origin_locale'] as String;
+  )
+    ..id = json['id'] as String
+    ..depositAmount = json['deposit_amount'] as String;
 }
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'id': instance.id,
+      'uid': instance.uid,
       'barcode': instance.barcode,
-      'description': instance.description,
-      'origin_locale': instance.originLocale,
-      'thumbnail_tiny_url': instance.thumbnailTinyUrl,
-      'thumbnail_small_url': instance.thumbnailSmallUrl,
-      'thumbnail_medium_url': instance.thumbnailMediumUrl,
-      'thumbnail_large_url': instance.thumbnailLargeUrl,
+      'name': instance.name,
+      'information': instance.information,
+      'deposit_amount': instance.depositAmount,
       'updated_at': instance.updatedAt,
       'created_at': instance.createdAt,
     };
