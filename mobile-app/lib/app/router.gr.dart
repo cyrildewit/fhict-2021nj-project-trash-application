@@ -16,6 +16,7 @@ import '../ui/views/nfc_links/nfc_links_view.dart';
 import '../ui/views/settings/settings_view.dart';
 import '../ui/views/startup/startup_view.dart';
 import '../ui/views/statistics/statistics_view.dart';
+import '../ui/views/trashed_product/trashed_product_view.dart';
 
 class Routes {
   static const String startupView = '/';
@@ -25,6 +26,7 @@ class Routes {
   static const String settingsView = '/settings-view';
   static const String loginView = '/login-view';
   static const String nfcLinkingView = '/nfc-linking-view';
+  static const String trashedProductView = '/trashed-product-view';
   static const all = <String>{
     startupView,
     homeView,
@@ -33,6 +35,7 @@ class Routes {
     settingsView,
     loginView,
     nfcLinkingView,
+    trashedProductView,
   };
 }
 
@@ -47,6 +50,7 @@ class Router extends RouterBase {
     RouteDef(Routes.settingsView, page: SettingsView),
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.nfcLinkingView, page: NfcLinkingView),
+    RouteDef(Routes.trashedProductView, page: TrashedProductView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -90,6 +94,12 @@ class Router extends RouterBase {
     NfcLinkingView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => NfcLinkingView(),
+        settings: data,
+      );
+    },
+    TrashedProductView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => TrashedProductView(),
         settings: data,
       );
     },
