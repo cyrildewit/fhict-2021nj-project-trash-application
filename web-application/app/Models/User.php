@@ -10,7 +10,6 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-
 class User extends Authenticatable implements JWTSubject, HasMedia
 {
     use HasFactory,
@@ -46,6 +45,17 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAvatar(string $conversion = 'small')
+    {
+        $avatar = $this->getFirstMediaUrl('avatar', $conversion);
+
+        if ($avatar === null) {
+            $avatar = Avatar::create($this->name)->toBase64();
+        }
+
+        return $avatar;
+    }
 
     public function registerMediaConversions(Media $media = null): void
     {

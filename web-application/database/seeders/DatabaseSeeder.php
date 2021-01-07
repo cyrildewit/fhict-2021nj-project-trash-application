@@ -24,13 +24,17 @@ class DatabaseSeeder extends Seeder
         // $this->run(EmployeesTableSeeder::class);
         // $this->run(ProductsTableSeeder::class);
 
-        Employee::create([
+        $employee = Employee::create([
             'uuid' => Str::uuid(),
             'name' => 'Cyril de Wit',
             'email' => 'cyril@projecttrash.nl',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
         ]);
+
+        $employee->addMedia(resource_path('seeds/cyrildewit.png'))
+            ->preservingOriginal()
+            ->toMediaCollection('avatar', 'public');
 
         Employee::create([
             'uuid' => Str::uuid(),

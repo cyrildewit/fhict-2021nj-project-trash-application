@@ -92,7 +92,7 @@
             <!-- Card Body -->
             <div class="card-body">
 
-                <form action="{{ route('management.user.update-avatar', ['uuid' => $user->uuid]) }}" method="post">
+                <form action="{{ route('management.user.update-avatar', ['uuid' => $user->uuid]) }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     {{ method_field('PUT') }}
 

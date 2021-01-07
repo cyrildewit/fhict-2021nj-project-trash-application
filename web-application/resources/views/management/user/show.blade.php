@@ -55,9 +55,11 @@
             <!-- Card Body -->
             <div class="card-body">
 
-                <img src="{{ $user->avatar_url_medium }}">
+                <div>
+                    <img class="rounded-circle" style="width: 130px; height: 130px;" src="{{ $user->getAvatar('small') }}">
+                </div>
 
-                <a href="{{ route('management.user.edit', ['uuid' => $user->uuid]) }}" class="d-none d-sm-inline-block btn btn-sm btn-default shadow-sm"><i class="fas fa-edit fa-sm"></i> Profielfoto aanpassen</a>
+                <a href="{{ route('management.user.edit', ['uuid' => $user->uuid]) }}" class="d-none d-sm-inline-block btn btn-sm btn-default shadow-sm mt-2"><i class="fas fa-edit fa-sm"></i> Profielfoto aanpassen</a>
 
             </div>
         </div>
