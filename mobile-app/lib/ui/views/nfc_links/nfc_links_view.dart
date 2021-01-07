@@ -25,10 +25,16 @@ class NfcLinksView extends StatelessWidget {
             ),
             SizedBox(height: 24),
             RaisedButton(
+              child: Text('Apparaat NFC koppelen'),
+              onPressed: () {},
+            ),
+            SizedBox(height: 24),
+            RaisedButton(
               child: Text('NFC druppel koppelen'),
               onPressed: () {},
             ),
             SizedBox(height: 24),
+            Divider(),
 
 // ListView.
           ],
