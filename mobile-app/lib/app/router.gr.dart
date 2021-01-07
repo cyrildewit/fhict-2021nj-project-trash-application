@@ -98,10 +98,27 @@ class Router extends RouterBase {
       );
     },
     TrashedProductView: (data) {
+      final args = data.getArgs<TrashedProductViewArguments>(
+        orElse: () => TrashedProductViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => TrashedProductView(),
+        builder: (context) => TrashedProductView(
+          key: args.key,
+          productId: args.productId,
+        ),
         settings: data,
       );
     },
   };
+}
+
+/// ************************************************************************
+/// Arguments holder classes
+/// *************************************************************************
+
+/// TrashedProductView arguments holder class
+class TrashedProductViewArguments {
+  final Key key;
+  final int productId;
+  TrashedProductViewArguments({this.key, this.productId});
 }
