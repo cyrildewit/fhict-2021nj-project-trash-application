@@ -99,7 +99,7 @@ class UserController extends Controller
         ]);
 
         $user
-            ->addFromMediaLibraryRequest($request, 'avatar')
+            ->addMediaFromRequest('avatar')
             ->toMediaCollection('avatar');
 
         $request->session()->flash('status', 'success');
