@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 
 import '../ui/views/home/home_view.dart';
 import '../ui/views/login/login_view.dart';
+import '../ui/views/nfc_linking/nfc_linking_view.dart';
 import '../ui/views/nfc_links/nfc_links_view.dart';
 import '../ui/views/settings/settings_view.dart';
 import '../ui/views/startup/startup_view.dart';
@@ -23,6 +24,7 @@ class Routes {
   static const String nfcLinksView = '/nfc-links-view';
   static const String settingsView = '/settings-view';
   static const String loginView = '/login-view';
+  static const String nfcLinkingView = '/nfc-linking-view';
   static const all = <String>{
     startupView,
     homeView,
@@ -30,6 +32,7 @@ class Routes {
     nfcLinksView,
     settingsView,
     loginView,
+    nfcLinkingView,
   };
 }
 
@@ -43,6 +46,7 @@ class Router extends RouterBase {
     RouteDef(Routes.nfcLinksView, page: NfcLinksView),
     RouteDef(Routes.settingsView, page: SettingsView),
     RouteDef(Routes.loginView, page: LoginView),
+    RouteDef(Routes.nfcLinkingView, page: NfcLinkingView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -80,6 +84,12 @@ class Router extends RouterBase {
     LoginView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => LoginView(),
+        settings: data,
+      );
+    },
+    NfcLinkingView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => NfcLinkingView(),
         settings: data,
       );
     },
