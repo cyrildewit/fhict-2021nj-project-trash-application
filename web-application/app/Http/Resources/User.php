@@ -18,6 +18,7 @@ class User extends JsonResource
             'uuid'                   => $this->uuid,
             'name'                   => $this->name,
             'email'                  => $this->email,
+            'balance'               => $this->balance,
             'avatar_tiny_url'        => $this->getFirstMediaUrl('avatar', 'tiny'),
             'avatar_small_url'        => $this->getFirstMediaUrl('avatar', 'small'),
             'avatar_medium_url'        => $this->getFirstMediaUrl('avatar', 'medium'),
