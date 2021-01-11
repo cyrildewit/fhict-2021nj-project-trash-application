@@ -1,22 +1,25 @@
 import 'package:injectable/injectable.dart';
+import 'package:project_trash/app/locator.dart';
+import 'package:project_trash/models/product.dart';
+import 'package:project_trash/services/product_service.dart';
 import 'package:stacked/stacked.dart';
-import 'dart:io';
-import 'package:meta/meta.dart';
+// import 'dart:io';
+// import 'package:meta/meta.dart';
 
-const String NfcLinkingBusyKey = 'nfc-linking-key';
+const String ProductFetchBusyKey = 'product-fetch-key';
 
 @singleton
 class TrashedProductViewModel extends BaseViewModel {
-  Future initialise() async {
-    setBusyForObject(NfcLinkingBusyKey, true);
+  ProductService productService = locator<ProductService>();
 
-    // sleep(Duration(seconds: 3));
-    await justWait(numberOfSeconds: 5);
+  Product product;
 
-    setBusyForObject(NfcLinkingBusyKey, false);
-  }
+  Future initialise(int productId) async {
+    setBusyForObject(ProductFetchBusyKey, true);
 
-  Future justWait({@required int numberOfSeconds}) async {
-    await Future.delayed(Duration(seconds: numberOfSeconds));
+    product = await productService
+        .fetchProductById(id: productId, queryParameters: {});
+
+    setBusyForObject(ProductFetchBusyKey, false);
   }
 }

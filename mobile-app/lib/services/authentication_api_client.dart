@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:project_trash/models/login_response.dart';
+import 'package:project_trash/models/refresh_token_response.dart';
 import 'package:project_trash/models/user.dart';
 import 'package:injectable/injectable.dart';
 import 'package:http/http.dart' as http;
@@ -29,44 +31,67 @@ class AuthenticationApiClient {
   Future<LoginResponse> login(String email, String password) async {
     final url = makeUri(
       path: '/auth/user/login',
-      queryParameters: {
+    );
+
+    final response = await this.httpClient.post(
+      url,
+      headers: {
+        HttpHeaders.acceptHeader: 'application/json',
+      },
+      body: {
         email: email,
         password: password,
       },
     );
 
-    final response = await this.httpClient.get(
-          url,
-          headers: requestHeaders(),
-        );
+    final loginResponseJson = jsonDecode(response.body);
 
-    final loginResponseJson = jsonDecode(response.body)['data'][0];
+    developer.log(response.statusCode.toString());
+    developer.log(response.body);
 
     return LoginResponse.fromJson(loginResponseJson);
   }
 
-  Future<User> currentUser() async {
-    // final url = makeUri(
-    //   path: '/auth/user/me',
-    // );
-
-    // final response = await this.httpClient.get(
-    //   url,
-    //   headers: {
-    //     ...requestHeaders(),
-    //     ...authRequestHeaders(),
-    //   },
-    // );
-
-    // final userJson = jsonDecode(response.body)['data'][0];
-
-    // return User.fromJson(userJson);
-
-    return User(
-      uuid: '333535',
-      name: 'Daan de Jong',
-      email: 'daandejong@example.org',
-      balance: 1820,
+  Future<RefreshTokenResponse> refreshToken(String acceessToken) async {
+    final url = makeUri(
+      path: '/auth/user/refresh',
     );
+
+    final response = await this.httpClient.post(
+      url,
+      headers: {
+        ...requestHeaders(),
+        HttpHeaders.authorizationHeader: 'Bearer $acceessToken',
+      },
+    );
+
+    final refreshTokenResponseJson = jsonDecode(response.body)['data'][0];
+
+    return RefreshTokenResponse.fromJson(refreshTokenResponseJson);
+  }
+
+  Future<User> currentUser() async {
+    final url = makeUri(
+      path: '/auth/user/me',
+    );
+
+    final response = await this.httpClient.post(
+      url,
+      headers: {
+        ...requestHeaders(),
+        ...authRequestHeaders(),
+      },
+    );
+
+    final userJson = jsonDecode(response.body)['data'][0];
+
+    return User.fromJson(userJson);
+
+    // return User(
+    //   uuid: '333535',
+    //   name: 'Daan de Jong',
+    //   email: 'daandejong@example.org',
+    //   balance: 1820,
+    // );
   }
 }

@@ -5,9 +5,12 @@ import 'package:project_trash/app/locator.dart';
 import 'package:project_trash/models/product_paginator.dart';
 import 'package:project_trash/services/product_api_client.dart';
 
+import 'authentication_service.dart';
+
 @lazySingleton
 class ProductService {
   final ProductApiClient productApiClient = locator<ProductApiClient>();
+  final AuthenticationService auth = locator<AuthenticationService>();
 
   Future<ProductPaginator> fetchProducts(
       {Map<String, dynamic> queryParameters}) async {

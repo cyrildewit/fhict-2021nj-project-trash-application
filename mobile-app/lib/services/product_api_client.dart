@@ -41,7 +41,7 @@ class ProductApiClient {
 
     final productsJson = jsonDecode(response.body);
 
-    developer.log(response.body);
+    // developer.log(response.body);
 
     return ProductPaginator.fromJson(productsJson);
     // } on SocketException {
@@ -60,9 +60,9 @@ class ProductApiClient {
     final url = makeUri(
       path: '/products',
       // queryParameters: queryParameters,
-      queryParameters: {
-        'include': 'languages',
-      },
+      // queryParameters: {
+      //   'include': 'languages',
+      // },
     );
 
     // try {
@@ -90,8 +90,8 @@ class ProductApiClient {
       queryParameters: queryParameters,
     );
 
-    developer.log(queryParameters['include']);
-    developer.log(url.toString());
+    // developer.log(queryParameters['include']);
+    // developer.log(url.toString());
 
     // try {
     final response = await this.httpClient.get(
@@ -99,7 +99,7 @@ class ProductApiClient {
           headers: requestHeaders(),
         );
 
-    developer.log(response.body);
+    // developer.log(response.body);
 
     final productJson = jsonDecode(response.body)['data'];
 

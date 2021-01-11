@@ -40,6 +40,10 @@ dependencies:
   google_fonts: ^1.1.1
   flutter_svg: ^0.19.1
   flex_color_scheme: any
+  # intl: ^0.16.1
+  # flutter_nfc_reader: ^0.1.0
+  # nfc_in_flutter: ^2.0.5
+  rounded_loading_button: ^1.0.0
 
 dev_dependencies:
   flutter_test:

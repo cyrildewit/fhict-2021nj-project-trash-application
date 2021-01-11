@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:injectable/injectable.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 import 'package:project_trash/app/locator.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:stacked/stacked.dart';
 import 'package:http/http.dart' as http;
-import 'package:meta/meta.dart';
+// import 'package:meta/meta.dart';
 
 import 'package:project_trash/models/user.dart';
 import 'package:project_trash/services/authentication_service.dart';
@@ -20,9 +20,9 @@ const String NfcLinkingBusyKey = 'nfc-linking-key';
 
 @singleton
 class HomeViewModel extends BaseViewModel {
-  AuthenticationService auth = locator<AuthenticationService>();
+  final AuthenticationService auth = locator<AuthenticationService>();
   final http.Client httpClient = http.Client();
-  NavigationService navigation = locator<NavigationService>();
+  final NavigationService navigation = locator<NavigationService>();
 
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
@@ -33,7 +33,7 @@ class HomeViewModel extends BaseViewModel {
 
   Future initialise() async {
     setBusyForObject(FetchViewDataBusyKey, true);
-    await this.getCurrentUser();
+    // await this.getCurrentUser();
 
     developer.log('initialise');
 
@@ -60,7 +60,7 @@ class HomeViewModel extends BaseViewModel {
       _btnController.success();
       Timer(Duration(seconds: 2), () {
         _btnController.reset();
-        navigation.navigateTo('/nfc-linking-view');
+        navigation.navigateTo('/trashed-product-view');
       });
     });
 

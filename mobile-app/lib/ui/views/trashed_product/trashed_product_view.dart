@@ -2,30 +2,91 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import 'package:project_trash/app/locator.dart';
-import 'package:project_trash/ui/views/nfc_linking/nfc_linking_viewmodel.dart';
+import 'package:project_trash/ui/views/trashed_product/trashed_product_viewmodel.dart';
 
 class TrashedProductView extends StatelessWidget {
+  final int productId;
+
+  const TrashedProductView({
+    Key key,
+    this.productId,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<NfcLinkingViewModel>.reactive(
+    return ViewModelBuilder<TrashedProductViewModel>.reactive(
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
-      viewModelBuilder: () => locator<NfcLinkingViewModel>(),
-      onModelReady: (model) async => model.initialise(),
+      viewModelBuilder: () => locator<TrashedProductViewModel>(),
+      onModelReady: (model) async => model.initialise(productId),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
           title: Text('Project TRASH'),
         ),
-        body: Container(
-          padding: EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: 12),
-              Text('NfcLinking page'),
-            ],
-          ),
-        ),
+        body: !model.busy(ProductFetchBusyKey)
+            ? Container(
+                padding: EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(height: 12),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                              'U heeft het volgende product weggegooid:',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 24),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: Center(
+                    //         child: ClipRRect(
+                    //           child: Image.network(
+                    //             model.product.thumbnailMediumUrl,
+                    //             height: 210,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    SizedBox(height: 12),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                              model.product.name ?? '',
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    RaisedButton(
+                      child: Text('Teruggaan'),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                ),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              ),
       ),
     );
   }

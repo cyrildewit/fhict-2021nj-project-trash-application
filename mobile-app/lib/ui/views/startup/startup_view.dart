@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:project_trash/ui/views/login/login_view.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
-import 'package:project_trash/app/locator.dart';
 import 'package:project_trash/ui/views/startup/startup_viewmodel.dart';
 import 'package:project_trash/ui/views/home/home_view.dart';
 import 'package:project_trash/ui/views/statistics/statistics_view.dart';
 import 'package:project_trash/ui/views/nfc_links/nfc_links_view.dart';
 import 'package:project_trash/ui/views/settings/settings_view.dart';
-import 'package:project_trash/ui/views/login/login_view.dart';
 
 class StartupView extends StatelessWidget {
   const StartupView({Key key}) : super(key: key);
@@ -22,32 +19,14 @@ class StartupView extends StatelessWidget {
         appBar: AppBar(
           title: Text('Project TRASH'),
         ),
-        // appBar: AppBar(
-        //   backgroundColor: Colors.white,
-        //   title: Expanded(
-        //     child: Row(
-        //       mainAxisAlignment: MainAxisAlignment.center,
-        //       children: <Widget>[
-        //         SizedBox(
-        //           height: 24,
-        //           child: SvgPicture.asset(
-        //             'assets/images/logo.svg',
-        //             semanticsLabel: 'Project TRASH Logo',
-        //           ),
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // ),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
               UserAccountsDrawerHeader(
                 currentAccountPicture: CircleAvatar(
-                  backgroundImage: NetworkImage(model.user?.avatarTinyUrl ?? ''
-                      // 'https://avatars1.githubusercontent.com/u/16477999?s=460&u=07f0424d8d360820cb8f6f5af520c7d5e77bd827&v=4',
-                      ),
+                  backgroundImage:
+                      NetworkImage(model.user?.avatarTinyUrl ?? ''),
                 ),
                 accountName: new Text(model.user?.name ?? ''),
                 accountEmail: new Text(model.user?.email ?? ''),
@@ -71,6 +50,11 @@ class StartupView extends StatelessWidget {
                 leading: Icon(Icons.settings),
                 title: Text('Instellingen'),
                 onTap: () => model.navigateToIndex(3, context),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Inloggen'),
+                onTap: () => model.navigateToIndex(4, context),
               ),
             ],
           ),
@@ -99,6 +83,8 @@ class StartupView extends StatelessWidget {
         return NfcLinksView();
       case 3:
         return SettingsView();
+      case 4:
+        return LoginView();
       default:
         return HomeView();
     }
