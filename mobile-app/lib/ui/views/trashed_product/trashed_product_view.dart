@@ -1,3 +1,4 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -39,6 +40,7 @@ class TrashedProductView extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
+                                color: FlexColor.greenLightPrimary,
                               ),
                             ),
                           ),
@@ -46,21 +48,6 @@ class TrashedProductView extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 24),
-                    // Row(
-                    //   children: [
-                    //     Expanded(
-                    //       child: Center(
-                    //         child: ClipRRect(
-                    //           child: Image.network(
-                    //             model.product.thumbnailMediumUrl,
-                    //             height: 210,
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    SizedBox(height: 12),
                     Row(
                       children: [
                         Expanded(
@@ -75,11 +62,54 @@ class TrashedProductView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    RaisedButton(
-                      child: Text('Teruggaan'),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
+                    SizedBox(height: 32),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                              'Het volgende bedrag is aan uw account toegevoegd:',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: FlexColor.greenLightPrimary,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                              "\u20AC" +
+                                  " ${model.product.getFormattedDepositAmount() ?? ''}",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 32,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Center(
+                            child: RaisedButton(
+                              child: Text('Teruggaan'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
