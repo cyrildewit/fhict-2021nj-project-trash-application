@@ -23,21 +23,19 @@ namespace Prullebak
         public void HandleBarcode(string barcode)
         {
             Trash trash = new Trash(barcode, http);
-            if (trash.information == null)
+            //move all data to arduino
+            com.SentCreditInfo(trash.DepositAmount);
+            com.WriteToLcd(trash.Information);
+            com.SelectArduinoMatrix(trash.SeperationTray);
+            if (trash.Barcode != null)
             {
-                //barcode was not in database so it is rest and no credit
-                com.SentCreditInfo("0");
-                com.WriteToLcd("Error niet in   database");
-                com.SelectArduinoMatrix(SeperationTray.rest);
+                queuedTrash = trash; //save the trash untill it is trown away.
             }
             else
             {
-                //barcode was in database so move info to adruino
-                com.SentCreditInfo(trash.depositAmount);
-                com.WriteToLcd(trash.information);
-                com.SelectArduinoMatrix(trash.seperationTray);
-                queuedTrash = trash; //save the trash untill it is trown away.
+                queuedTrash = null;
             }
+            
         }
 
         public void AddToList()
@@ -51,7 +49,7 @@ namespace Prullebak
         {
             foreach (Trash trash in scannedTrash)
             {
-                if (http.addCreditoAcount(uid, trash.barcode) == false) //request faalde dus geef error aan
+                if (http.addCreditoAcount(uid, trash.Barcode) == false) //request failed so submit error
                 {
                     com.WriteToLcd("error in geld toewijzen");
                     scannedTrash.Clear();
