@@ -21,7 +21,7 @@ class ProductApiClient {
     return Uri(
       scheme: ApiConstants.BASE_SCHEME,
       host: ApiConstants.BASE_HOST,
-      path: ApiConstants.BASE_VERSION + path,
+      path: 'api/' + ApiConstants.BASE_VERSION + path,
       queryParameters: queryParameters,
     );
   }
@@ -90,7 +90,6 @@ class ProductApiClient {
       queryParameters: queryParameters,
     );
 
-    // developer.log(queryParameters['include']);
     // developer.log(url.toString());
 
     // try {
@@ -99,7 +98,10 @@ class ProductApiClient {
           headers: requestHeaders(),
         );
 
-    // developer.log(response.body);
+    developer.log(response.statusCode.toString());
+    developer.log(response.body);
+
+    // return Product();
 
     final productJson = jsonDecode(response.body)['data'];
 
