@@ -54,16 +54,16 @@ class StartupView extends StatelessWidget {
               //   title: Text('Statistieken'),
               //   onTap: () => model.navigateToIndex(1, context),
               // ),
-              ListTile(
-                leading: Icon(Icons.nfc),
-                title: Text('NFC koppelingen'),
-                onTap: () => model.navigateToIndex(2, context),
-              ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Instellingen'),
-                onTap: () => model.navigateToIndex(3, context),
-              ),
+              // ListTile(
+              //   leading: Icon(Icons.nfc),
+              //   title: Text('NFC koppelingen'),
+              //   onTap: () => model.navigateToIndex(2, context),
+              // ),
+              // ListTile(
+              //   leading: Icon(Icons.settings),
+              //   title: Text('Instellingen'),
+              //   onTap: () => model.navigateToIndex(3, context),
+              // ),
               ListTile(
                 leading: Icon(Icons.supervised_user_circle),
                 title: Text('Inloggen'),

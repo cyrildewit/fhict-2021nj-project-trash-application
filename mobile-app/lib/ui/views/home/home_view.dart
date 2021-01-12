@@ -83,7 +83,7 @@ class HomeView extends StatelessWidget {
                           Expanded(
                             child: RoundedLoadingButton(
                               child: Text(
-                                'NFC identificatie aanzetten',
+                                'Verbinden met prullenbak',
                                 style: TextStyle(color: Colors.white),
                               ),
                               controller: model.btnController,
