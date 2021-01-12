@@ -1,3 +1,4 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:stacked/stacked.dart';
@@ -11,20 +12,28 @@ class LoginView extends StatelessWidget {
     return ViewModelBuilder<LoginViewModel>.reactive(
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
-      builder: (context, model, child) => Container(
+      builder: (context, model, child) =>
+          // Scaffold(
+          //   appBar: AppBar(
+          //     title: Text('Project TRASH'),
+          //   ),
+          //   body:
+          Container(
         padding: EdgeInsets.symmetric(horizontal: 24),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 12),
             Text(
-              'Login page',
+              'Inloggen',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
+                color: FlexColor.greenLightPrimary,
               ),
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 32),
             Container(
               child: new TextField(
                 controller: model.emailController,
@@ -39,7 +48,7 @@ class LoginView extends StatelessWidget {
                 obscureText: true,
               ),
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 32),
             RoundedLoadingButton(
               child: Text(
                 'Inloggen',
@@ -51,6 +60,7 @@ class LoginView extends StatelessWidget {
           ],
         ),
       ),
+      // ),
       viewModelBuilder: () => locator<LoginViewModel>(),
     );
   }
