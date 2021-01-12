@@ -8,21 +8,18 @@ import 'package:stacked_services/stacked_services.dart';
 const String FetchUserBusyKey = 'fetch-user-key';
 
 class StartupViewModel extends IndexTrackingViewModel {
-  AuthenticationService auth = locator<AuthenticationService>();
-  NavigationService navigation = locator<NavigationService>();
+  final AuthenticationService authenticationService =
+      locator<AuthenticationService>();
+  final NavigationService navigationService = locator<NavigationService>();
 
   User user;
 
   Future initialise() async {
-    // await this.auth.check();
+    await this.authenticationService.check();
 
-    await this.getCurrentUser();
+    await getCurrentUser();
 
     notifyListeners();
-  }
-
-  void navigateToLoginView() {
-    navigation.navigateTo('/login-view');
   }
 
   void navigateToIndex(int value, context) {
@@ -32,6 +29,6 @@ class StartupViewModel extends IndexTrackingViewModel {
   }
 
   Future getCurrentUser() async {
-    this.user = await this.auth.currentUser();
+    this.user = await this.authenticationService.currentUser();
   }
 }
