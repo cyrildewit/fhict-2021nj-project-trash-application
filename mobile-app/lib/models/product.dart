@@ -4,7 +4,8 @@ part 'product.g.dart';
 
 @JsonSerializable()
 class Product {
-  String id;
+  @JsonKey(name: 'id')
+  int id;
 
   @JsonKey(name: 'uid', nullable: true)
   String uid;
@@ -19,7 +20,7 @@ class Product {
   String information;
 
   @JsonKey(name: 'deposit_amount')
-  String depositAmount;
+  int depositAmount;
 
   // @JsonKey(name: 'thumbnail_tiny_url')
   // String thumbnailTinyUrl;
@@ -62,4 +63,14 @@ class Product {
       _$ProductFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductToJson(this);
+
+  String getFormattedDepositAmount() {
+    double _depositAmount = 0;
+
+    if (this.depositAmount != null) {
+      _depositAmount = (this.depositAmount / 100);
+    }
+
+    return _depositAmount.toStringAsFixed(2);
+  }
 }

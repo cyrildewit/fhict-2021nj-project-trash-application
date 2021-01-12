@@ -13,6 +13,7 @@ class User {
   @JsonKey(name: 'avatar_tiny_url')
   String avatarTinyUrl;
 
+  @JsonKey(name: 'balance')
   int balance;
 
   @JsonKey(name: 'updated_at')

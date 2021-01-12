@@ -15,8 +15,8 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
     updatedAt: json['updated_at'] as String,
     createdAt: json['created_at'] as String,
   )
-    ..id = json['id'] as String
-    ..depositAmount = json['deposit_amount'] as String;
+    ..id = json['id'] as int
+    ..depositAmount = json['deposit_amount'] as int;
 }
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
