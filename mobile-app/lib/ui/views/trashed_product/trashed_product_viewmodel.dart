@@ -5,6 +5,8 @@ import 'package:injectable/injectable.dart';
 import 'package:project_trash/app/locator.dart';
 import 'package:project_trash/constants/api_constants.dart';
 import 'package:project_trash/models/product.dart';
+import 'package:project_trash/models/user.dart';
+import 'package:project_trash/services/authentication_service.dart';
 import 'package:project_trash/services/product_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:stacked/stacked.dart';
@@ -17,6 +19,8 @@ const String ProductFetchBusyKey = 'product-fetch-key';
 @singleton
 class TrashedProductViewModel extends BaseViewModel {
   final ProductService productService = locator<ProductService>();
+  final AuthenticationService authenticationService =
+      locator<AuthenticationService>();
 
   final http.Client httpClient = http.Client();
 
@@ -37,13 +41,15 @@ class TrashedProductViewModel extends BaseViewModel {
   Future initialise(int productId) async {
     setBusyForObject(ProductFetchBusyKey, true);
 
+    // User user = authenticationService.currentUser();
+
     product = await productService
         .fetchProductById(id: productId, queryParameters: {});
 
     // {{base}}/{{version}}/users/findByNFC/906718937129/discarded-waste-records?barcode=5449000111678
 
     final url = makeUri(
-      path: '/users/findByNFC/906718937129/discarded-waste-records',
+      path: '/users/findByNFC/default/discarded-waste-records',
     );
 
     // developer.log(url.toString());

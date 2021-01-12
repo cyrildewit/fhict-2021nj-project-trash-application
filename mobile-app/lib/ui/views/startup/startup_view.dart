@@ -72,7 +72,7 @@ class StartupView extends StatelessWidget {
               ListTile(
                 leading: Icon(Icons.app_registration),
                 title: Text('Registreren'),
-                onTap: () => model.navigateToIndex(4, context),
+                onTap: () => model.navigateToIndex(5, context),
               ),
             ],
           ),

@@ -58,6 +58,40 @@ class AuthenticationApiClient {
     return LoginResponse.fromJson(loginResponseJson);
   }
 
+  Future register(String name, String email, String password,
+      String passwordConfirmation) async {
+    final url = makeUri(
+      path: '/auth/user/register',
+    );
+
+    developer.log(url.toString());
+
+    final response = await this.httpClient.post(
+          url,
+          headers: {
+            HttpHeaders.acceptHeader: 'application/json',
+            HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            "name": name,
+            "email": email,
+            "password": password,
+            "password_confirmation": passwordConfirmation,
+          }),
+        );
+
+    // final loginResponseJson = jsonDecode(response.body);
+
+    developer.log(email);
+    developer.log(password);
+    developer.log(passwordConfirmation);
+
+    developer.log(response.statusCode.toString());
+    developer.log(response.body);
+
+    // return LoginResponse.fromJson(loginResponseJson);
+  }
+
   Future<RefreshTokenResponse> refreshToken(String acceessToken) async {
     final url = makeUri(
       path: '/auth/user/refresh',

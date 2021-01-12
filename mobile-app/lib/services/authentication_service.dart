@@ -30,9 +30,11 @@ class AuthenticationService {
     }
   }
 
-  // Future<User> register(String email, String password) {
-  //   return authenticationApiClient.login(email, password);
-  // }
+  Future register(
+      String name, String email, String password, String passwordConfirmation) {
+    return authenticationApiClient.register(
+        name, email, password, passwordConfirmation);
+  }
 
   Future check() async {
     if (this.accessToken == null) {
@@ -40,7 +42,7 @@ class AuthenticationService {
       this.user = null;
       this.accessToken = null;
 
-      navigationService.navigateTo('/login-view');
+      // navigationService.navigateTo('/login-view');
 
       return false;
     } else {
