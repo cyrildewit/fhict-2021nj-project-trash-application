@@ -11,10 +11,10 @@ import 'dart:developer' as developer;
 
 @lazySingleton
 class AuthenticationService {
-  AuthenticationApiClient authenticationApiClient =
+  final AuthenticationApiClient authenticationApiClient =
       locator<AuthenticationApiClient>();
 
-  NavigationService navigation = locator<NavigationService>();
+  final NavigationService navigationService = locator<NavigationService>();
 
   User user;
   String accessToken;
@@ -36,12 +36,16 @@ class AuthenticationService {
 
   Future check() async {
     if (this.accessToken == null) {
-      developer.log("User is not authenticated");
+      // developer.log("User is not authenticated");
       this.user = null;
       this.accessToken = null;
-      // navigation.navigateTo('/login-view');
+
+      navigationService.navigateTo('/login-view');
+
+      return false;
     } else {
-      developer.log("User is authenticated");
+      return true;
+      // developer.log("User is authenticated");
     }
   }
 
@@ -55,12 +59,10 @@ class AuthenticationService {
   }
 
   Future<User> currentUser() async {
-    if (this.user != null) {
-      return this.user;
+    if (this.user == null) {
+      return await authenticationApiClient.currentUser();
     }
 
-    await this.refreshToken();
-
-    return await authenticationApiClient.currentUser();
+    return this.user;
   }
 }

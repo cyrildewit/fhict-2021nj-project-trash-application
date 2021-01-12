@@ -23,7 +23,7 @@ class AuthenticationApiClient {
     return Uri(
       scheme: ApiConstants.BASE_SCHEME,
       host: ApiConstants.BASE_HOST,
-      path: ApiConstants.BASE_VERSION + path,
+      path: '/api/' + ApiConstants.BASE_VERSION + path,
       queryParameters: queryParameters,
     );
   }
@@ -33,18 +33,24 @@ class AuthenticationApiClient {
       path: '/auth/user/login',
     );
 
+    // developer.log(url.toString());
+
     final response = await this.httpClient.post(
-      url,
-      headers: {
-        HttpHeaders.acceptHeader: 'application/json',
-      },
-      body: {
-        email: email,
-        password: password,
-      },
-    );
+          url,
+          headers: {
+            HttpHeaders.acceptHeader: 'application/json',
+            HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            "email": email,
+            "password": password,
+          }),
+        );
 
     final loginResponseJson = jsonDecode(response.body);
+
+    developer.log(email);
+    developer.log(password);
 
     developer.log(response.statusCode.toString());
     developer.log(response.body);
@@ -65,7 +71,7 @@ class AuthenticationApiClient {
       },
     );
 
-    final refreshTokenResponseJson = jsonDecode(response.body)['data'][0];
+    final refreshTokenResponseJson = jsonDecode(response.body);
 
     return RefreshTokenResponse.fromJson(refreshTokenResponseJson);
   }
@@ -83,15 +89,11 @@ class AuthenticationApiClient {
       },
     );
 
-    final userJson = jsonDecode(response.body)['data'][0];
+    developer.log(response.statusCode.toString());
+    developer.log(response.body);
+
+    final userJson = jsonDecode(response.body)['data'];
 
     return User.fromJson(userJson);
-
-    // return User(
-    //   uuid: '333535',
-    //   name: 'Daan de Jong',
-    //   email: 'daandejong@example.org',
-    //   balance: 1820,
-    // );
   }
 }
