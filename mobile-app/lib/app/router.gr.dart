@@ -17,6 +17,7 @@ import '../ui/views/settings/settings_view.dart';
 import '../ui/views/startup/startup_view.dart';
 import '../ui/views/statistics/statistics_view.dart';
 import '../ui/views/trashed_product/trashed_product_view.dart';
+import 'route_guards/auth_guard.dart';
 
 class Routes {
   static const String startupView = '/';
@@ -43,14 +44,15 @@ class Router extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
-    RouteDef(Routes.startupView, page: StartupView),
-    RouteDef(Routes.homeView, page: HomeView),
-    RouteDef(Routes.statisticsView, page: StatisticsView),
-    RouteDef(Routes.nfcLinksView, page: NfcLinksView),
-    RouteDef(Routes.settingsView, page: SettingsView),
-    RouteDef(Routes.loginView, page: LoginView),
-    RouteDef(Routes.nfcLinkingView, page: NfcLinkingView),
-    RouteDef(Routes.trashedProductView, page: TrashedProductView),
+    RouteDef(Routes.startupView, page: StartupView, guards: [AuthGuard]),
+    RouteDef(Routes.homeView, page: HomeView, guards: [AuthGuard]),
+    RouteDef(Routes.statisticsView, page: StatisticsView, guards: [AuthGuard]),
+    RouteDef(Routes.nfcLinksView, page: NfcLinksView, guards: [AuthGuard]),
+    RouteDef(Routes.settingsView, page: SettingsView, guards: [AuthGuard]),
+    RouteDef(Routes.loginView, page: LoginView, guards: [AuthGuard]),
+    RouteDef(Routes.nfcLinkingView, page: NfcLinkingView, guards: [AuthGuard]),
+    RouteDef(Routes.trashedProductView,
+        page: TrashedProductView, guards: [AuthGuard]),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
