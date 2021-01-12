@@ -19,6 +19,7 @@ class User extends JsonResource
             'name'                   => $this->name,
             'email'                  => $this->email,
             'balance'               => $this->balance,
+            'nfc_uid'               => $this->nfc_uid,
             'avatar_tiny_url'        => $this->getFirstMediaUrl('avatar', 'tiny'),
             'avatar_small_url'        => $this->getFirstMediaUrl('avatar', 'small'),
             'avatar_medium_url'        => $this->getFirstMediaUrl('avatar', 'medium'),
