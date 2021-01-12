@@ -15,6 +15,7 @@ namespace Prullebak
         public SeperationTray seperationTray { get; private set; }
         public string depositAmount { get; private set; }
 
+        //constructor
         public Trash(string barcode, HttpReqequesthandler http)
         {
             this.barcode = barcode; 

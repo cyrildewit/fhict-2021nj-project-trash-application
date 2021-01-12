@@ -30,6 +30,7 @@ namespace Prullebak
         {
             this.UUID = UUID;
         }
+
         public string makeHttpRequest(string barcode)
         {
             string url = apiUrl + "/products/findByBarcode/" + barcode;

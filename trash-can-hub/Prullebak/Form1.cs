@@ -27,7 +27,7 @@ namespace Prullebak
         {
             if (e.KeyCode == Keys.Enter)
             {
-                main.handleBarcode(textBox1.Text);
+                main.HandleBarcode(textBox1.Text);
                 textBox1.Text = "";
             }
         }
