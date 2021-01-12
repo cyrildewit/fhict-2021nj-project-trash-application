@@ -12,7 +12,7 @@ class HomeView extends StatelessWidget {
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
       viewModelBuilder: () => locator<HomeViewModel>(),
-      onModelReady: (model) async => await model.initialise(),
+      // onModelReady: (model) async => await model.initialise(),
       builder: (context, model, child) => !model.busy(FetchViewDataBusyKey)
           ? RefreshIndicator(
               onRefresh: model.refreshViewData,
