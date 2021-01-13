@@ -14,13 +14,13 @@ class StartupViewModel extends IndexTrackingViewModel {
 
   User user;
 
-  Future initialise() async {
-    await this.authenticationService.check();
+  // Future initialise() async {
+  //   await this.authenticationService.check();
 
-    await getCurrentUser();
+  //   await getCurrentUser();
 
-    notifyListeners();
-  }
+  //   notifyListeners();
+  // }
 
   void navigateToIndex(int value, context) {
     Navigator.pop(context);

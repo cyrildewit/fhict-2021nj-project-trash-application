@@ -26,35 +26,25 @@ class TrashedProductViewModel extends BaseViewModel {
 
   Product product;
 
-  Uri makeUri({
-    String path,
-    Map<String, dynamic /*String|Iterable<String>*/ > queryParameters,
-  }) {
-    return Uri(
-      scheme: ApiConstants.BASE_SCHEME,
-      host: ApiConstants.BASE_HOST,
-      path: '/api/' + ApiConstants.BASE_VERSION + path,
-      queryParameters: queryParameters,
-    );
-  }
-
   Future initialise(int productId) async {
     setBusyForObject(ProductFetchBusyKey, true);
-
-    // User user = authenticationService.currentUser();
 
     product = await productService
         .fetchProductById(id: productId, queryParameters: {});
 
-    // {{base}}/{{version}}/users/findByNFC/906718937129/discarded-waste-records?barcode=5449000111678
+    await fakeStoreDiscardedWasteRecord();
 
+    notifyListeners();
+
+    setBusyForObject(ProductFetchBusyKey, false);
+  }
+
+  Future fakeStoreDiscardedWasteRecord() async {
     final url = makeUri(
       path: '/users/findByNFC/default/discarded-waste-records',
     );
 
-    // developer.log(url.toString());
-
-    final response = await this.httpClient.post(
+    await this.httpClient.post(
           url,
           headers: {
             HttpHeaders.acceptHeader: 'application/json',
@@ -65,11 +55,17 @@ class TrashedProductViewModel extends BaseViewModel {
             "barcode": "5449000111678",
           }),
         );
+  }
 
-    developer.log(response.body);
-
-    notifyListeners();
-
-    setBusyForObject(ProductFetchBusyKey, false);
+  Uri makeUri({
+    String path,
+    Map<String, dynamic /*String|Iterable<String>*/ > queryParameters,
+  }) {
+    return Uri(
+      scheme: ApiConstants.BASE_SCHEME,
+      host: ApiConstants.BASE_HOST,
+      path: '/api/' + ApiConstants.BASE_VERSION + path,
+      queryParameters: queryParameters,
+    );
   }
 }

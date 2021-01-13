@@ -11,16 +11,14 @@ class RegisterViewModel extends BaseViewModel {
   final AuthenticationService authenticationSerice =
       locator<AuthenticationService>();
   final NavigationService navigationService = locator<NavigationService>();
-  final TextEditingController nameController =
-      TextEditingController(text: 'Dries van Schipkotte');
+  final TextEditingController nameController = TextEditingController();
 
-  final TextEditingController emailController =
-      TextEditingController(text: 'dries@example.org');
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController =
-      TextEditingController(text: 'password');
+      TextEditingController();
 
   final TextEditingController passwordConfirmationController =
-      TextEditingController(text: 'password');
+      TextEditingController();
 
   final RoundedLoadingButtonController _submitBtnController =
       new RoundedLoadingButtonController();

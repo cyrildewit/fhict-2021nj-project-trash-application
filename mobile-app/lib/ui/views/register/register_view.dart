@@ -15,7 +15,6 @@ class RegisterView extends StatelessWidget {
       builder: (context, model, child) => Container(
         padding: EdgeInsets.symmetric(horizontal: 24),
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 12),

@@ -49,11 +49,11 @@ class AuthenticationApiClient {
 
     final loginResponseJson = jsonDecode(response.body);
 
-    developer.log(email);
-    developer.log(password);
+    // developer.log(email);
+    // developer.log(password);
 
-    developer.log(response.statusCode.toString());
-    developer.log(response.body);
+    // developer.log(response.statusCode.toString());
+    // developer.log(response.body);
 
     return LoginResponse.fromJson(loginResponseJson);
   }
@@ -82,12 +82,12 @@ class AuthenticationApiClient {
 
     // final loginResponseJson = jsonDecode(response.body);
 
-    developer.log(email);
-    developer.log(password);
-    developer.log(passwordConfirmation);
+    // developer.log(email);
+    // developer.log(password);
+    // developer.log(passwordConfirmation);
 
-    developer.log(response.statusCode.toString());
-    developer.log(response.body);
+    // developer.log(response.statusCode.toString());
+    // developer.log(response.body);
 
     // return LoginResponse.fromJson(loginResponseJson);
   }

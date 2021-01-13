@@ -32,27 +32,22 @@ class HomeViewModel extends BaseViewModel {
 
   User user;
 
-  Future initialise() async {
-    setBusyForObject(FetchViewDataBusyKey, true);
+  // Future initialise() async {
+  //   setBusyForObject(FetchViewDataBusyKey, true);
 
-    // this.user = await authenticationService.currentUser();
+  //   // this.user = await authenticationService.currentUser();
 
-    // this.auth.check();
+  //   // this.auth.check();
 
-    // await this.getCurrentUser();
+  //   // await this.getCurrentUser();
 
-    setBusyForObject(FetchViewDataBusyKey, false);
-  }
+  //   setBusyForObject(FetchViewDataBusyKey, false);
+  // }
 
   Future refreshViewData() async {
     setBusyForObject(FetchViewDataBusyKey, true);
 
     await getCurrentUser();
-
-    developer.log(user.balance.toString());
-    developer.log(user.toJson().toString());
-
-    // notifyListeners();
 
     setBusyForObject(FetchViewDataBusyKey, false);
   }
@@ -64,6 +59,7 @@ class HomeViewModel extends BaseViewModel {
   void linkNfc() async {
     setBusyForObject(NfcLinkingBusyKey, true);
 
+    // Faked
     Timer(Duration(seconds: 3), () {
       _btnController.success();
       Timer(Duration(seconds: 2), () {

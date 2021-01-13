@@ -12,13 +12,8 @@ class LoginViewModel extends BaseViewModel {
       locator<AuthenticationService>();
   final NavigationService navigationService = locator<NavigationService>();
 
-  final TextEditingController emailController =
-      TextEditingController(text: 'doe@example.org');
-  final TextEditingController passwordController =
-      TextEditingController(text: 'password');
-
-  // final TextEditingController emailController = TextEditingController();
-  // final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   final RoundedLoadingButtonController _submitBtnController =
       new RoundedLoadingButtonController();
