@@ -9,15 +9,62 @@ namespace Prullebak
 {
     class Trash
     {
-        //properties 
-        public string barcode { get; private set; }
-        public string information { get; private set; }
-        public SeperationTray seperationTray { get; private set; }
-        public string depositAmount { get; private set; }
+        //fields
+        private string information;
+        private SeperationTray seperationTray;
+        private string depositAmount;
+        private string barcode;
 
+        //properties 
+        public string Barcode
+        {
+            private set
+            {
+                barcode = null;
+            }
+            get
+            {
+                return barcode;
+            }
+        }
+        public string Information
+        {
+            private set
+            {
+                information = "Error niet in   database";
+            }
+            get
+            {
+                return information;
+            }
+        }
+        public SeperationTray SeperationTray
+        {
+            private set
+            {
+                seperationTray = SeperationTray.rest;
+            }
+            get
+            {
+                return seperationTray;
+            }
+        }
+        public string DepositAmount
+        {
+            private set
+            {
+                depositAmount = "0";
+            }
+            get
+            {
+                return depositAmount;
+            }
+        }
+
+        //constructor
         public Trash(string barcode, HttpReqequesthandler http)
         {
-            this.barcode = barcode; 
+            this.Barcode = barcode; 
             string input = http.makeHttpRequest(barcode);
             if (input != null)
             {
@@ -26,7 +73,7 @@ namespace Prullebak
 
                 information = Convert.ToString(root.GetProperty("data").GetProperty("information"));
                 seperationTray = (SeperationTray)Convert.ToInt32(Convert.ToString(root.GetProperty("data").GetProperty("seperation_tray")));
-                barcode = Convert.ToString(root.GetProperty("data").GetProperty("barcode"));
+                this.barcode = Convert.ToString(root.GetProperty("data").GetProperty("barcode"));
                 depositAmount = Convert.ToString(root.GetProperty("data").GetProperty("deposit_amount"));
                 if (depositAmount == "")
                 {

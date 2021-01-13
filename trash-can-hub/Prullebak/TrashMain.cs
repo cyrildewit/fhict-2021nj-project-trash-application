@@ -8,44 +8,50 @@ namespace Prullebak
 {
     class TrashMain
     {
-        List<Trash> scannedTrash;
-        comPortHandler com;
+        List<Trash> scannedTrash; //this has all the trash that has been trown away but not yet claimed
+        Trash queuedTrash; //the last trash that has been scaned but not yet trown away
+        comPortHandler com; 
         HttpReqequesthandler http;
 
         public TrashMain()
         {
             scannedTrash = new List<Trash>();
-            http = new HttpReqequesthandler("94de8bee-2f65-41ad-b15c-46dbbfa6392d");
+            http = new HttpReqequesthandler("36046afa-d99c-47ec-8754-af8b39f6aa9e");
             com = new comPortHandler(this);
         }
 
-        public void handleBarcode(string barcode)
+        public void HandleBarcode(string barcode)
         {
             Trash trash = new Trash(barcode, http);
-            if (trash.information == null)
+            //move all data to arduino
+            com.SentCreditInfo(trash.DepositAmount);
+            com.WriteToLcd(trash.Information);
+            com.SelectArduinoMatrix(trash.SeperationTray);
+            if (trash.Barcode != null)
             {
-                //barcode was not in database so it is rest and no credit
-                com.sentCreditInfo("0");
-                com.writeToLcd("Error niet in   database");
-                com.selectArduinoMatrix(SeperationTray.rest);
+                queuedTrash = trash; //save the trash untill it is trown away.
             }
             else
             {
-                //barcode was in database so move info to adruino
-                com.sentCreditInfo(trash.depositAmount);
-                com.writeToLcd(trash.information);
-                com.selectArduinoMatrix(trash.seperationTray);
-                scannedTrash.Add(trash); //add it to the list to be able to claim it later
+                queuedTrash = null;
             }
+            
         }
 
-        public void addCredit(string uid)
+        public void AddToList()
+        {
+            if (queuedTrash != null)
+            {
+                scannedTrash.Add(queuedTrash); //the trash has been trown away so add it to the list
+            }
+        }
+        public void AddCredit(string uid)
         {
             foreach (Trash trash in scannedTrash)
             {
-                if (http.addCreditoAcount(uid, trash.barcode) == false)
+                if (http.addCreditoAcount(uid, trash.Barcode) == false) //request failed so submit error
                 {
-                    com.writeToLcd("error in geld toewijzen");
+                    com.WriteToLcd("error in geld toewijzen");
                     scannedTrash.Clear();
                     break;
                 }

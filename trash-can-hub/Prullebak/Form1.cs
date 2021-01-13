@@ -16,18 +16,19 @@ namespace Prullebak
 {
     public partial class Form1 : Form
     {
-        TrashMain main = new TrashMain();
+        TrashMain main;
 
         public Form1()
         {
             InitializeComponent();
+            main = new TrashMain();
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                main.handleBarcode(textBox1.Text);
+                main.HandleBarcode(textBox1.Text);
                 textBox1.Text = "";
             }
         }

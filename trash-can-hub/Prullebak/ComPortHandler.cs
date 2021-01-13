@@ -24,23 +24,23 @@ namespace Prullebak
             this.main = main;
             ports = SerialPort.GetPortNames();
 
-            string selectedPort = ports[0];
+            string selectedPort = ports[0]; 
             port = new SerialPort(selectedPort, 9600, Parity.None, 8, StopBits.One);
             port.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
             port.Open();
         }
 
-        public void selectArduinoMatrix(SeperationTray tray)
+        public void SelectArduinoMatrix(SeperationTray tray)
         {
             port.Write("#" + Convert.ToString(tray) + "\n"); //to sent info we need start with an # and end with \n
         }
         
-        public void writeToLcd(string text)
+        public void WriteToLcd(string text)
         {
             port.Write("#~" + text + "\n"); //to sent to lcd we have to add ~ so it knows it's for the lcd
         }
 
-        public void sentCreditInfo(string text)
+        public void SentCreditInfo(string text)
         {
             port.Write("#^" + text + "\n"); // to sent credit info we add ^
         }
@@ -50,19 +50,29 @@ namespace Prullebak
                 SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
-            string uid = ""; // create a variable that we will add on what we get via the serial port
+            string input = ""; // create a variable that we will add on what we get via the serial port
             // normaly the serial port separates the id in multiple things so we keep reading untill there is an #
             //Somtimes it returns nothing so we check if there is nothing and if that's true we just repeat
             string indata = sp.ReadExisting(); // read the serial port
             while (indata == "" || indata.Substring(indata.Length - 1) != "#")
             {
-                uid = uid + indata; // add input the uid
+                input = input + indata; // add input the input var
                 indata = sp.ReadExisting();
             }
-            uid = uid + indata;
-            uid = uid.Remove(uid.Length - 1);
-            Console.WriteLine(uid);
-            main.addCredit(uid);
+            
+            input = input + indata;
+            input = input.Remove(input.Length - 1); //remove the #
+            Console.WriteLine(input);
+            //when a product has been trown away it sent's a "*" so when that happends call function
+            if (input == "*")
+            {
+                main.AddToList();
+            }
+            else
+            {
+                main.AddCredit(input);
+            }
+            
         }
     }
 }
