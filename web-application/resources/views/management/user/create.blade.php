@@ -22,7 +22,7 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Klantgegevens</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Gebruiker gegevens</h6>
             </div>
 
             <!-- Card Body -->

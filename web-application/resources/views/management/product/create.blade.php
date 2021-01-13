@@ -1,6 +1,6 @@
 @extends('management.layouts.main')
 
-@section('title', 'Klant aanmaken')
+@section('title', 'Product aanmaken')
 
 @section('content')
 <!-- Page Heading -->

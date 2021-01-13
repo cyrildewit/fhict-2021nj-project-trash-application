@@ -44,7 +44,7 @@
 @push('footer')
 <script>
 
-    /**
+/**
  * Display clustered markers on a map
  *
  * Note that the maps clustering module https://js.api.here.com/v3/3.1/mapsjs-clustering.js
@@ -77,21 +77,6 @@ function startClustering(map, data) {
   // we need to add our layer to the map
   map.addLayer(clusteringLayer);
 }
-
-// function addMarkersAndSetViewBounds(map) {
-//   var group = new H.map.Group();
-//   group.addObjects([
-//       @foreach($trashCans as $trashCan)
-//         new H.map.Marker({lat: {{ $trashCan->latitude }}, lng: {{ $trashCan->longtitude }} }),
-//       @endforeach
-//   ]);
-//   map.addObject(group);
-
-// //   // get geo bounding box for the group and set it to the map
-// //   map.getViewModel().setLookAtData({
-// //     bounds: group.getBoundingBox()
-// //   });
-// }
 
 var platform = new H.service.Platform({
   apikey: '{{ config('services.here.secret') }}'
@@ -141,9 +126,4 @@ startClustering(map, trashcans);
 <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
 <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
 <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-clustering.js"></script>
-{{-- <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-clustering.js"></script> --}}
 @endpush

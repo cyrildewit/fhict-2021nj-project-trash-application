@@ -1,6 +1,6 @@
 @extends('management.layouts.main')
 
-@section('title', 'Klant '.$product->name.' bewerken')
+@section('title', 'Product '.$product->name.' bewerken')
 
 @section('content')
 <!-- Page Heading -->
