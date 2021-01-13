@@ -40,10 +40,6 @@ class Product {
   @JsonKey(name: 'created_at')
   String createdAt;
 
-  // List<ProductLanguage> languages;
-
-  // List<IngredientAnnotation> ingredientAnnotations;
-
   Product({
     this.uid,
     this.barcode,
@@ -55,8 +51,6 @@ class Product {
     // this.thumbnailLargeUrl,
     this.updatedAt,
     this.createdAt,
-    // this.languages,
-    // this.ingredientAnnotations,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) =>

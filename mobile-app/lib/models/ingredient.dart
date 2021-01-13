@@ -12,13 +12,10 @@ class Ingredient {
   @JsonKey(name: 'created_at')
   String createdAt;
 
-  // List<IngredientLanguage> languages;
-
   Ingredient({
     this.id,
     this.updatedAt,
     this.createdAt,
-    // this.languages,
   });
 
   factory Ingredient.fromJson(Map<String, dynamic> json) =>
